@@ -55,6 +55,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\GameItemQuantity.cs" />
+    <Compile Include="Models\GameMapLocations.cs" />
+    <Compile Include="Models\ISpeak.cs" />
+    <Compile Include="Models\MundaneItem.cs" />
+    <Compile Include="Models\Npc.cs" />
+    <Compile Include="Models\NpcCharacter.cs" />
+    <Compile Include="UtilityClass\ObservableObject.cs" />
+    <Compile Include="Views\GameSessionView.xaml.cs">
+      <DependentUpon>GameSessionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameSessionViewModel.cs" />
+    <Compile Include="Views\HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayerSetupView.xaml.cs">
+      <DependentUpon>PlayerSetupView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,12 +80,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BusinessLayer\GameBusiness.cs" />
+    <Compile Include="DataAcessLayer\GameData.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\GameSessionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlayerSetupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Character.cs" />
+    <Compile Include="Models\GameItem.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Map.cs" />
+    <Compile Include="Models\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +129,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataAcessLayer\SQL\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
