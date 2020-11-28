@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="HelpWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid>
+            <StackPanel>
+                <TextBlock Margin="5" Text="Welcome!"/>
+                <TextBlock Margin="5" Text="This is a puzzle based game that takes place inside your families mansion." />
+                <TextBlock Margin="5" Text="You will use the items inside to decipher what strange circumstances have occured while you have been away at school."/>
+                <TextBlock Margin="5" Text="Solve the mystery!"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

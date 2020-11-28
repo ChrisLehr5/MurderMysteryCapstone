@@ -28,6 +28,7 @@ namespace MurderMysteryCapstone.Models
         private int _modifyHealth;
         private int _modifyLives;
         private string _message;
+        private string _perception;
         private ObservableCollection<GameItemQuantity> _gameItems;
         private ObservableCollection<Npc> _npcs;
 
@@ -103,6 +104,13 @@ namespace MurderMysteryCapstone.Models
             get { return _message; }
             set { _message = value; }
         }
+
+        public string Perception
+        {
+            get { return _perception; }
+            set { _perception = value; }
+        }
+
 
         public ObservableCollection<GameItemQuantity> GameItems
         {
@@ -199,14 +207,7 @@ namespace MurderMysteryCapstone.Models
             UpdateLocationGameItems();
         }
 
-        //
-        // location is open if character has enough XP
-        //
-        public bool IsAccessibleByExperiencePoints(int playerExperiencePoints)
-        {
-            return playerExperiencePoints >= _requiredExperiencePoints ? true : false;
-        }
-
+       
         #endregion
     }
 }

@@ -117,19 +117,16 @@
                     Grid.Column="0"
                     Margin="0,0,0,10"
                     Style="{StaticResource BorderStyle}">
-                    <StackPanel>
-                        <Label 
-                            Content="{Binding MissionTimeDisplay}" 
-                            HorizontalAlignment="Center"
-                            Style="{StaticResource MainPanelLabelStyle}"/>
+                    <StackPanel>                        
                         <StackPanel
                             Orientation="Vertical"
                             Height="50"  >
                             <Button 
                             Margin="10"
                             Width="150"
-                            Content="Mission Status" 
-                            Style="{StaticResource MainPanelButtonStyle}" /> 
+                            Content="Journal" 
+                            Style="{StaticResource MainPanelButtonStyle}" 
+                            Click="JournalStatus_Click"/>
                         </StackPanel>
                         <Label 
                             Content="Current Location" 
@@ -212,31 +209,37 @@
                             Height="50"  />
                         <StackPanel
                             Orientation="Vertical"
-                            Height="100"  >
-                            <StackPanel
-                            Orientation="Horizontal"
-                            Margin="10">
-                                <Button 
-                                Content="Save Game" 
-                                Style="{StaticResource MainPanelButtonStyle}" 
-                                Click="SaveButton_Click"/>
-                                <Button 
-                                Content="Quit Game" 
-                                Style="{StaticResource MainPanelButtonStyle}" 
-                                Click="QuitButton_Click"/>
-                            </StackPanel>
-                            <StackPanel
-                            Orientation="Vertical"
-                            Height="50"  >
-                                <Button 
-                                Content="About Game" 
-                                Style="{StaticResource MainPanelButtonStyle}" 
-                                Click="HelpButton_Click"/>
-                            </StackPanel>
-
-
+                            Height="30"  >
+                            <Label 
+                                Content="Character Information"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource MainPanelLabelStyle}"/>
                         </StackPanel>
-
+                        <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Left">
+                            <TextBox Text="{Binding Player.Name}" IsReadOnly="True" Name="textBox1" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            <Label Content="Name" Style="{StaticResource MainPanelLabelStyle}"/>
+                        </StackPanel>
+                        <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Left">
+                            <TextBox Text="{Binding Player.Trait}" IsReadOnly="True" Name="textBox2" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            <Label Content="Trait" Style="{StaticResource MainPanelLabelStyle}"/>
+                        </StackPanel>
+                        <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Left">
+                            <TextBox Text="{Binding Player.Age}" IsReadOnly="True" Name="textBox3" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            <Label Content="Age" Style="{StaticResource MainPanelLabelStyle}"/>
+                        </StackPanel>
+                        <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Left">
+                            <TextBox Text="{Binding Player.PlayStyle}" IsReadOnly="True" Name="textBox4" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            <Label Content="Play Style" Style="{StaticResource MainPanelLabelStyle}"/>
+                        </StackPanel>
                         <StackPanel
                             Orientation="Vertical">
 
@@ -349,7 +352,11 @@
                             <Button 
                                 Content="Speak To" 
                                 Style="{StaticResource MainPanelButtonStyle}" 
-                               />                          
+                                Click="SpeakToButton_Click"/>
+                            <Button
+                                Content="Perceive" 
+                                Style="{StaticResource MainPanelButtonStyle}" 
+                                 Click="PerceiveButton_Click"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -513,39 +520,17 @@
                         <StackPanel
                             Grid.Column="0"
                             Orientation="Vertical">
-                            <StackPanel
-                            Orientation="Vertical"
-                            Height="30"  >
-                                <Label 
-                                Content="Character Information"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                Style="{StaticResource MainPanelLabelStyle}"/>
-                            </StackPanel>
-                            <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Left">
-                                <TextBox Text="{Binding Player.Name}" IsReadOnly="True" Name="textBox1" Style="{StaticResource MainPanelTextBoxStyle}"/>
-                                <Label Content="Name" Style="{StaticResource MainPanelLabelStyle}"/>
-                            </StackPanel>
-                            <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Left">
-                                <TextBox Text="{Binding Player.Trait}" IsReadOnly="True" Name="textBox2" Style="{StaticResource MainPanelTextBoxStyle}"/>
-                                <Label Content="Trait" Style="{StaticResource MainPanelLabelStyle}"/>
-                            </StackPanel>
-                            <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Left">
-                                <TextBox Text="{Binding Player.Age}" IsReadOnly="True" Name="textBox3" Style="{StaticResource MainPanelTextBoxStyle}"/>
-                                <Label Content="Age" Style="{StaticResource MainPanelLabelStyle}"/>
-                            </StackPanel>
-                            <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Left">
-                                <TextBox Text="{Binding Player.PlayStyle}" IsReadOnly="True" Name="textBox4" Style="{StaticResource MainPanelTextBoxStyle}"/>
-                                <Label Content="Play Style" Style="{StaticResource MainPanelLabelStyle}"/>
-                            </StackPanel>
+                            <TextBox
+                                Height="100"
+                                Width="auto"
+                                Margin="10"
+                                Background="WhiteSmoke"
+                                BorderThickness="0"
+                                TextWrapping="Wrap"
+                                Text="{Binding PerceptionDisplay, Mode=OneWay}"
+                                VerticalScrollBarVisibility="Auto"
+                                VerticalContentAlignment="top"
+                                Style="{StaticResource MainPanelTextBoxStyle}"/>
                         </StackPanel>
                         <StackPanel
                             Grid.Column="1"
@@ -573,6 +558,7 @@
                                 Style="{StaticResource MainPanelTextBoxStyle}"/>
                             </Border>
                         </StackPanel>
+                        
 
 
                         <StackPanel
@@ -582,22 +568,24 @@
                             Orientation="Vertical"
                             Height="35"  ></StackPanel>
                             <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Right">
-                                <Label Content="Health" Name="textBox5" Style="{StaticResource MainPanelLabelStyle}"/>
-                                <TextBox Text="{Binding Player.Health}" Style="{StaticResource MainPanelTextBoxStyle}" />
+                            Orientation="Horizontal"
+                            Margin="10">
+                                <Button 
+                                Content="Save Game" 
+                                Style="{StaticResource MainPanelButtonStyle}" 
+                                Click="SaveButton_Click"/>
+                                <Button 
+                                Content="Quit Game" 
+                                Style="{StaticResource MainPanelButtonStyle}" 
+                                Click="QuitButton_Click"/>
                             </StackPanel>
                             <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Right">
-                                <Label Content="Lives" Name="textBox6" Style="{StaticResource MainPanelLabelStyle}"/>
-                                <TextBox Text="{Binding Player.Lives}" Style="{StaticResource MainPanelTextBoxStyle}"/>
-                            </StackPanel>
-                            <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Right">
-                                <Label Content="Experience" Name="textBox7" Style="{StaticResource MainPanelLabelStyle}"/>
-                                <TextBox Text="{Binding Player.ExperiencePoints}" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            Orientation="Vertical"
+                            Height="50"  >
+                                <Button 
+                                Content="About Game" 
+                                Style="{StaticResource MainPanelButtonStyle}" 
+                                Click="HelpButton_Click"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>

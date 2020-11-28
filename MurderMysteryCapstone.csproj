@@ -57,10 +57,14 @@
     </ApplicationDefinition>
     <Compile Include="Models\GameItemQuantity.cs" />
     <Compile Include="Models\GameMapLocations.cs" />
+    <Compile Include="Models\IPerception.cs" />
     <Compile Include="Models\ISpeak.cs" />
+    <Compile Include="Models\Journal.cs" />
+    <Compile Include="Models\JournalTravel.cs" />
     <Compile Include="Models\MundaneItem.cs" />
     <Compile Include="Models\Npc.cs" />
     <Compile Include="Models\NpcCharacter.cs" />
+    <Compile Include="Models\PerceiveModeEnum.cs" />
     <Compile Include="UtilityClass\ObservableObject.cs" />
     <Compile Include="Views\GameSessionView.xaml.cs">
       <DependentUpon>GameSessionView.xaml</DependentUpon>
@@ -69,6 +73,10 @@
     <Compile Include="Views\HelpWindow.xaml.cs">
       <DependentUpon>HelpWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\JournalStatusView.xaml.cs">
+      <DependentUpon>JournalStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JournalStatusViewModel.cs" />
     <Compile Include="Views\PlayerSetupView.xaml.cs">
       <DependentUpon>PlayerSetupView.xaml</DependentUpon>
     </Compile>
@@ -91,6 +99,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\JournalStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

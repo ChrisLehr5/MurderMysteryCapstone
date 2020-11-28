@@ -33,7 +33,7 @@ namespace MurderMysteryCapstone.Views
 
         private void InitializeWindowTheme()
         {
-            this.Title = "RocketCat Productions";
+            this.Title = "The Golden Mystery";
         }
 
         private void NorthTravelButton_Click(object sender, RoutedEventArgs e)
@@ -92,7 +92,7 @@ namespace MurderMysteryCapstone.Views
             MessageBoxResult result = MessageBox.Show("The game has saved!");
         }
 
-      
+
         private void QuitButton_Click(object sender, RoutedEventArgs e)
         {
             _gameSessionViewModel.QuiteApplication();
@@ -110,6 +110,27 @@ namespace MurderMysteryCapstone.Views
                 _gameSessionViewModel.InspectTheItem();
             }
         }
-        
+
+        private void SpeakToButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LocationNpcsDataGrid.SelectedItem != null)
+            {
+                _gameSessionViewModel.OnPlayerTalkTo();
+            }
+        }
+
+        private void PerceiveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LocationNpcsDataGrid.SelectedItem != null)
+            {
+                _gameSessionViewModel.OnPlayerPercieve();
+            }
+
+        }
+
+        private void JournalStatus_Click(object sender, RoutedEventArgs e)
+        {
+            _gameSessionViewModel.OpenJournalStatusView();
+        }
     }
 }

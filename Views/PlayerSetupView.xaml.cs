@@ -100,8 +100,8 @@ namespace MurderMysteryCapstone.Views
         {
             NameTextBox.Text = "";
             AgeTextBox.Text = "";
-            JobTitleComboBox.SelectedIndex = 0;
-            TraitComboBox.SelectedIndex = 0;
+            //JobTitleComboBox.SelectedIndex = 0;
+            //TraitComboBox.SelectedIndex = 0;
         }
     }
 }

@@ -40,11 +40,6 @@ namespace MurderMysteryCapstone.BusinessLayer
             {
                 _playerSetupView = new PlayerSetupView(_player);
                 _playerSetupView.ShowDialog();               
-                _player.Health = 100;
-                _player.Lives = 3;
-                
-
-
             }
             else
             {

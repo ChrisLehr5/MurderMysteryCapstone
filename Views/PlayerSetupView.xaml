@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MurderMysteryCapstone.Views"
         mc:Ignorable="d"
     Background="Gray"
-        Width="400"
+        Width="800"
         Height="400"
         WindowStyle="SingleBorderWindow">
     <Window.Resources>
@@ -90,13 +90,17 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Border
             Margin="10"
             Style="{DynamicResource BorderStyle}">
             <StackPanel
             Grid.Column="0"
             Orientation="Vertical"
-            HorizontalAlignment="Center">
+            HorizontalAlignment="Left">
                 <Label
                     Content="Character Creation" 
                     HorizontalAlignment="Center"
@@ -104,55 +108,78 @@
                     FontSize="20"
                     Style="{StaticResource MainPanelLabelStyle}"/>
                 <StackPanel
+                Margin="10"
                 Orientation="Horizontal"
-                HorizontalAlignment="Right">
-                    <Label Content="Name" Style="{StaticResource MainPanelLabelStyle}"/>
-                    <TextBox Name="NameTextBox" Style="{StaticResource MainPanelTextBoxStyle}"/>
-                </StackPanel>
-                <StackPanel
-                Orientation="Horizontal"
-                HorizontalAlignment="Right">
-                    <Label Content="Trait" Style="{StaticResource MainPanelLabelStyle}"/>
-                    <ComboBox 
-                    Name="TraitComboBox"
-                    SelectedIndex="0"
-                    Style="{StaticResource MainPanelComboBoxStyle}"/>
-                </StackPanel>
-                <StackPanel
-                Orientation="Horizontal"
-                HorizontalAlignment="Right">
-                    <Label Content="Age" Style="{StaticResource MainPanelLabelStyle}"/>
-                    <TextBox Name="AgeTextBox" Style="{StaticResource MainPanelTextBoxStyle}"/>
-                </StackPanel>
-                <StackPanel
-                Orientation="Horizontal"
-                HorizontalAlignment="Right">
+                HorizontalAlignment="Center">
                     <Label Content="Play Style" Style="{StaticResource MainPanelLabelStyle}"/>
                     <ComboBox 
                     Name="JobTitleComboBox"
                     SelectedIndex="0"
                     Style="{StaticResource MainPanelComboBoxStyle}"/>
                 </StackPanel>
-                <Button
-                    Name="OkButton"
-                    Margin="20"
-                    Content="OK"
-                    Style="{StaticResource MainPanelButtonStyle}"
-                    Click="OkButton_Click"/>
-                <TextBlock 
+                <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                    <Label Content="Name      " Style="{StaticResource MainPanelLabelStyle}"/>
+                    <TextBox Name="NameTextBox" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                </StackPanel>              
+                <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                    <Label Content="Age       " Style="{StaticResource MainPanelLabelStyle}"/>
+                    <TextBox Name="AgeTextBox" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                </StackPanel>
+                <StackPanel>                             
+                    <Button
+                    Name="ClearButton"                    
+                    Content="Reset"
+                    Margin="10"
+                    Style="{StaticResource MainPanelButtonStyle}" 
+                    HorizontalAlignment="Center"    
+                    Click="ClearButton_Click"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock 
                     Name="ErrorMessageTextBlock"
                     Background="Gray"
                     Foreground="Red"/>
-                <Button
-                    Name="ClearButton"
-                    Margin="20"
-                    Content="Reset"
-                    Style="{StaticResource MainPanelButtonStyle}"
-                    Click="ClearButton_Click"/>
+                </StackPanel>                
             </StackPanel>
-
         </Border>
 
+        <Border
+            Margin="10"
+            Grid.Column="1"           
+            Style="{DynamicResource BorderStyle}">
+            <StackPanel
+            Grid.Column="1"
+            Orientation="Vertical"
+            HorizontalAlignment="Left">
+                <Label
+                    Content="The Story So Far..." 
+                    HorizontalAlignment="Center"
+                    Margin="20"
+                    FontSize="20"
+                    Style="{StaticResource MainPanelLabelStyle}"/>
+                <TextBox
+                    Height="100"
+                    Width="350"
+                    Margin="10"
+                    Background="WhiteSmoke"
+                    BorderThickness="0"
+                    TextWrapping="Wrap"
+                    Text="This adventure game is a game of choices, following your character as you attempt to solve the deadly mystery surrounding the discovered gold. Will you progress, or be the next victim to fall?">
+                </TextBox>
+                <StackPanel>
+                    <Button
+                    Name="OkButton"                  
+                    Style="{StaticResource MainPanelButtonStyle}" 
+                    Content="Begin Game"
+                    HorizontalAlignment="Center"                  
+                    Click="OkButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
 

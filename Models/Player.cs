@@ -8,64 +8,40 @@ using MurderMysteryCapstone.UtilityClass;
 
 namespace MurderMysteryCapstone.Models
 {
-    public class Player : Character
+    public class Player : Character//, IPerception
     {
         #region FIELDS
 
-        
+
         private int _lives;
-        private int _health;   
-              
+        private int _health;
+
         private List<Location> _locationsVisited;
         private List<Npc> _npcsEngaged;
-
+        private PerceiveModeName _perceiveMode;
         private ObservableCollection<GameItemQuantity> _inventory;
         private ObservableCollection<GameItemQuantity> _potions;
         private ObservableCollection<GameItemQuantity> _mundaneItem;
         private ObservableCollection<GameItemQuantity> _weapons;
-        private ObservableCollection<GameItemQuantity> _keys;     
-
+        private ObservableCollection<GameItemQuantity> _keys;
+        private ObservableCollection<Journal> _journals;
 
         #endregion
 
         #region PROPERTIES
 
-        public int Lives
+        public ObservableCollection<Journal> Journals
         {
-            get { return _lives; }
-            set
-            {
-                _lives = value;
-                OnPropertyChanged(nameof(Lives));
-            }
+            get { return _journals; }
+            set { _journals = value; }
         }
-              
 
-        public int Health
+        public PerceiveModeName PerceiveMode
         {
-            get { return _health; }
-            set
-            {
-                _health = value;
-
-                if (_health > 100)
-                {
-                    _health = 100;
-                }
-                else if (_health <= 0)
-                {
-                    _health = 100;
-                    _lives--;
-                }
-
-                OnPropertyChanged(nameof(Health));
-            }
+            get { return _perceiveMode; }
+            set { _perceiveMode = value; }
         }
-              
 
-       
-
-     
         public List<Location> LocationsVisited
         {
             get { return _locationsVisited; }
@@ -107,7 +83,6 @@ namespace MurderMysteryCapstone.Models
             set { _keys = value; }
         }
 
-       
 
         #endregion
 
@@ -119,14 +94,34 @@ namespace MurderMysteryCapstone.Models
             _npcsEngaged = new List<Npc>();
             _mundaneItem = new ObservableCollection<GameItemQuantity>();
             _potions = new ObservableCollection<GameItemQuantity>();
-            _keys = new ObservableCollection<GameItemQuantity>();           
+            _keys = new ObservableCollection<GameItemQuantity>();
+            _journals = new ObservableCollection<Journal>();
         }
 
         #endregion
 
         #region METHODS
+        public void UpdateJournalStatus()
+        {
+            //
+            // Note: only loop through assigned missions and cast mission to proper child class
+            //
+            foreach (Journal journal in _journals.Where(m => m.Status == Journal.JournalStatus.Incomplete))
+            {
+                if (journal is JournalTravel)
+                {
+                    if (((JournalTravel)journal).LocationsNotCompleted(_locationsVisited).Count == 0)
+                    {
+                        journal.Status = Journal.JournalStatus.Complete;
+                    }
+                }
+                else
+                {
+                    throw new Exception("Unknown journal.");
+                }
+            }
+        }
 
-       
         //update the game item list
 
         public void UpdateInventoryCategories()
@@ -139,7 +134,7 @@ namespace MurderMysteryCapstone.Models
             foreach (var gameItemQuantity in _inventory)
             {
                 //if (gameItemQuantity.GameItem is Potion) Potions.Add(gameItemQuantity);
-               // if (gameItemQuantity.GameItem is Weapon) Weapons.Add(gameItemQuantity);
+                // if (gameItemQuantity.GameItem is Weapon) Weapons.Add(gameItemQuantity);
                 if (gameItemQuantity.GameItem is MundaneItem) MundaneItem.Add(gameItemQuantity);
                 //if (gameItemQuantity.GameItem is Key) Keys.Add(gameItemQuantity);
             }
@@ -201,8 +196,8 @@ namespace MurderMysteryCapstone.Models
         {
             return _locationsVisited.Contains(location);
         }
-      
-        #endregion    
+
+        #endregion
 
     }
-}
+} 

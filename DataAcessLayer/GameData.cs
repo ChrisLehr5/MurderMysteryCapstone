@@ -16,21 +16,20 @@ namespace MurderMysteryCapstone.DataAcessLayer
             {
                 Id = 1,
                 Name = "Violet",
-                //Age = 13,             
-                Health = 100,
-                Lives = 3,              
+                //Age = 13,           
+             
                 Inventory = new ObservableCollection<GameItemQuantity>()
                 {
                     new GameItemQuantity(GameItemById(1002), 1),
                     new GameItemQuantity(GameItemById(1004), 1),
                     new GameItemQuantity(GameItemById(2001), 5),
                 },
-                //Missions = new ObservableCollection<Mission>()
-               // {
-                //    MissionById(1),
-                //    MissionById(2),
-               //     MissionById(3)
-               // }
+                Journals = new ObservableCollection<Journal>()
+                {
+                      JournalById(1),
+                      JournalById(2),
+                      JournalById(3),
+                }
             };
         }
 
@@ -55,7 +54,10 @@ namespace MurderMysteryCapstone.DataAcessLayer
 
             return locations.FirstOrDefault(i => i.Id == id);
         }
-              
+        public static Journal JournalById(int id)
+        {
+            return Journals().FirstOrDefault(m => m.Id == id);
+        }
 
         public static GameMapCoordinates InitialGameMapLocation()
         {
@@ -80,6 +82,7 @@ namespace MurderMysteryCapstone.DataAcessLayer
                 Accessible = true,
                 ModifiyExperiencePoints = 10,
                 Message = "",
+                Perception = "This is strange",
                 GameItems = new ObservableCollection<GameItemQuantity>()
                 {
                     new GameItemQuantity(GameItemById(2001), 1),
@@ -109,7 +112,8 @@ namespace MurderMysteryCapstone.DataAcessLayer
                 "To your left is the door to the parlor, to the right the vaulted entrance to the library." + "" +
                 "The Hallway itself is padded with thick rugs, the walls covered in knicknacks and curios from all over the world.",
                 Accessible = true,
-                Message = "The floor creaks beneath your feet."
+                Message = "The floor creaks beneath your feet.",
+                Perception = "You feel a foreboading."
             };
 
             gameMap.MapLocations[0, 2] = new Location()
@@ -250,59 +254,88 @@ namespace MurderMysteryCapstone.DataAcessLayer
                 new NpcCharacter()
                 {
                     Id = 2001,
-                    Name = "Parrot",                   
+                    Name = "Parrot",
                     Description = "A striking red parrot. Its cold flat eyes follow you around the room, like it is waiting for something.",
                     Messages = new List<string>()
                     {
                         "Pretty Bird!",
                         "Give me the shiny!",
                         "SQUAWK"
-                    },                   
-                   
+                    },
+
                 },
 
                 new NpcCharacter()
                 {
                     Id = 2002,
-                    Name = "Butler Smith",                  
+                    Name = "Butler Smith",
                     Description = "You recognize the etheral form of the family butler Smith flickering in the room. A Ghost!?!",
                     Messages = new List<string>()
                     {
                         "You shouldn't be here!",
                         "I am sorry, the lady is out. May I take a message?",
                         "I feel...hungry gazing upon you..."
-                    },                  
+                    },
                 },
 
                 new NpcCharacter()
                 {
                     Id = 2003,
-                    Name = "Wailing Lady",                  
+                    Name = "Wailing Lady",
                     Description = "A woman in a tattered white dress.",
                     Messages = new List<string>()
                     {
                         "You must find my mirror!",
                         "Fool!",
                         ".............."
-                    },                    
+                    },
                 },
 
                 new NpcCharacter()
                 {
                     Id= 2004,
-                    Name ="Mouse",                   
+                    Name ="Mouse",
                     Description = "A small gray mouse.",
                     Messages = new List<string>()
                     {
                         "Squeek!",
                         "Squeeeekkkkk!"
-                    },                   
+                    },
                 }
             };
 
         }
 
-      
+        public static List<Journal> Journals()
+        {
+            return new List<Journal>()
+            {
+                new JournalTravel()
+                {
+                    Id = 1,
+                    Name = "Locked Locations",
+                    Description = "Figure out how to get into these locations.",
+                    Status = Journal.JournalStatus.Incomplete,
+                    RequiredLocations = new List<Location>()
+                    {
+                        LocationById(5),
+                        LocationById(8)
+                    },
+                },
 
+
+                new JournalTravel()
+                {
+                    Id = 2,
+                    Name = "Locked Locations",
+                    Description = "Figure out how to get into these locations.",
+                    Status = Journal.JournalStatus.Incomplete,
+                    RequiredLocations = new List<Location>()
+                   {
+                        LocationById(5),
+                        LocationById(8)
+                    },
+            }   };
+        }
     }
 }

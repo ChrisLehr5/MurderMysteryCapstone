@@ -1,13 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MurderMysteryCapstone.Models;
 using System.Windows;
 using MurderMysteryCapstone.UtilityClass;
+using System.Text;
+using MurderMysteryCapstone.Views;
 
 namespace MurderMysteryCapstone.Views
 {
      public class GameSessionViewModel : ObservableObject
     {
+
+        #region CONSTANTANTS
+
+        const string TAB = "\t";
+        const string NEW_LINE = "\n";
+
+        #endregion
+
         private Player _player;
 
         private Map _gameMap;
@@ -29,6 +40,11 @@ namespace MurderMysteryCapstone.Views
         public string MessageDisplay
         {
             get { return _currentLocation.Message; }
+        }
+
+        public string PerceptionDisplay
+        {
+            get { return _currentLocation.Perception; }
         }
         public Map GameMap
         {
@@ -273,22 +289,16 @@ namespace MurderMysteryCapstone.Views
                 //
                 // add location to list of visited locations
                 //
-                _player.LocationsVisited.Add(_currentLocation);
-             
-                //
-                // update health
-                //
-                _player.Health += _currentLocation.ModifyHealth;
-
-                //
-                // update lives
-                //
-                _player.Lives += _currentLocation.ModifyLives;
-
+                _player.LocationsVisited.Add(_currentLocation);             
+               
                 //
                 // display a new message if available
                 //
                 OnPropertyChanged(nameof(MessageDisplay));
+                //
+                //display new perception if available
+                //
+                OnPropertyChanged(nameof(PerceptionDisplay));
             }
         }
 
@@ -302,7 +312,8 @@ namespace MurderMysteryCapstone.Views
                 _gameMap.MoveNorth();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
-                OnPlayerMove();                
+                OnPlayerMove();
+                _player.UpdateJournalStatus();
             }
         }
 
@@ -316,7 +327,8 @@ namespace MurderMysteryCapstone.Views
                 _gameMap.MoveEast();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
-                OnPlayerMove();             
+                OnPlayerMove();
+                _player.UpdateJournalStatus();
             }
         }
 
@@ -330,7 +342,8 @@ namespace MurderMysteryCapstone.Views
                 _gameMap.MoveSouth();
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
-                OnPlayerMove();               
+                OnPlayerMove();
+                _player.UpdateJournalStatus();
             }
         }
 
@@ -345,7 +358,8 @@ namespace MurderMysteryCapstone.Views
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
-              
+                _player.UpdateJournalStatus();
+
             }
         }
 
@@ -513,6 +527,28 @@ namespace MurderMysteryCapstone.Views
             }
         }
 
+        public void OnPlayerTalkTo()
+        {
+            if (CurrentNpc != null && CurrentNpc is ISpeak)
+            {
+                ISpeak speakingNpc = CurrentNpc as ISpeak;
+                CurrentLocationInformation = speakingNpc.Speak();
+                _player.NpcsEngaged.Add(_currentNpc);
+               
+            }
+        }
+
+        public void OnPlayerPercieve()
+        {
+            if (CurrentNpc != null && CurrentNpc is ISpeak)
+            {
+                ISpeak speakingNpc = CurrentNpc as ISpeak;
+                CurrentLocationInformation = speakingNpc.Speak();
+                _player.NpcsEngaged.Add(_currentNpc);
+
+            }
+        }
+
         /// <summary>
         /// player chooses to exit game
         /// </summary>
@@ -529,5 +565,106 @@ namespace MurderMysteryCapstone.Views
             Environment.Exit(0);
         }
 
+        /// <summary>
+        /// open the Journal window
+        /// </summary>
+        public void OpenJournalStatusView()
+        {
+            JournalStatusView journalStatusView = new JournalStatusView(InitializeJournalStatusViewModel());
+            
+            journalStatusView.Show();
+        }
+       
+        /// <summary>
+        /// initialize all property values for the mission status view model
+        /// </summary>
+        /// <returns>mission status view model</returns>
+        private JournalStatusViewModel InitializeJournalStatusViewModel()
+        {
+            JournalStatusViewModel journalStatusViewModel = new JournalStatusViewModel();
+
+            journalStatusViewModel.JournalInformation = GenerateJournalStatusInformation();
+
+            journalStatusViewModel.Journals = new List<Journal>(_player.Journals);
+            foreach (Journal journal in journalStatusViewModel.Journals)
+            {
+                if (journal is JournalTravel)
+                    journal.StatusDetail = GenerateJournalTravelDetail((JournalTravel)journal);
+
+                //if (mission is MissionEngage)
+                  //  mission.StatusDetail = GenerateMissionEngageDetail((MissionEngage)mission);
+
+               // if (mission is MissionGather)
+                  //  mission.StatusDetail = GenerateMissionGatherDetail((MissionGather)mission);
+            }
+
+            return journalStatusViewModel;
+        }
+
+        /// <summary>
+        /// generate the mission status information text based on percentage of missions completed
+        /// </summary>
+        /// <returns>mission status information text</returns>
+        private string GenerateJournalStatusInformation()
+        {
+            string missionStatusInformation;
+
+            double totalMissions = _player.Journals.Count();
+            double missionsCompleted = _player.Journals.Where(m => m.Status == Journal.JournalStatus.Complete).Count();
+
+            int percentMissionsCompleted = (int)((missionsCompleted / totalMissions) * 100);
+            missionStatusInformation = $"Journal Entries Discovered: {percentMissionsCompleted}%" + NEW_LINE;
+
+            if (percentMissionsCompleted == 0)
+            {
+                missionStatusInformation += "No quests complete at this point.";
+            }
+            else if (percentMissionsCompleted == 50)
+            {
+                missionStatusInformation += "Half way there!";
+            }
+            else if (percentMissionsCompleted == 66)
+            {
+                missionStatusInformation += "So close! You can do it!";
+            }
+            else if (percentMissionsCompleted == 100)
+            {
+                missionStatusInformation += "Congratulations, you have completed all quests.";
+            }
+
+            return missionStatusInformation;
+        }
+
+
+        /// <summary>
+        /// generate the text for a travel mission detail
+        /// </summary>
+        /// <param name="mission">the mission</param>
+        /// <returns>mission detail text</returns>
+        private string GenerateJournalTravelDetail(JournalTravel journal)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Clear();
+
+            sb.AppendLine("All Required");
+            foreach (var location in journal.RequiredLocations)
+            {
+                sb.AppendLine(TAB + location.Name);
+            }
+
+            if (journal.Status == Journal.JournalStatus.Incomplete)
+            {
+                sb.AppendLine("No new entries");
+                foreach (var location in journal.LocationsNotCompleted(_player.LocationsVisited))
+                {
+                    sb.AppendLine(TAB + location.Name);
+                }
+            }
+
+            sb.Remove(sb.Length - 2, 2); // remove the last two characters that generate a blank line
+
+            return sb.ToString(); ;
+        }
+        
     }
 }

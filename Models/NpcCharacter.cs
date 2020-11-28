@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MurderMysteryCapstone.Models
 {
-    public class NpcCharacter : Npc, ISpeak
+    public class NpcCharacter : Npc, ISpeak//, IPerception
     {
-        public List<string> Messages { get; set; }
-
+        public List<string> Messages { get; set; }      
+        public List<string>Perceptions { get; set; }
 
         protected override string InformationText()
         {
@@ -24,10 +24,12 @@ namespace MurderMysteryCapstone.Models
                int id,
                string name,
                string description,
-               List<string> messages)
+               List<string> messages,
+               List<string> perceptions)
 
         {
             Messages = messages;
+            Perceptions = perceptions;
 
         }
         /// <summary>
@@ -55,6 +57,27 @@ namespace MurderMysteryCapstone.Models
             Random r = new Random();
             int messageIndex = r.Next(0, Messages.Count());
             return Messages[messageIndex];
+        }
+
+        public string Perceive()
+        {
+            if (this.Perceptions != null)
+            {
+                return GetPerception();
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// randomly select a message from the list of messages
+        /// </summary>
+        /// <returns>message text</returns>
+        private string GetPerception()
+        {
+            return "";
         }
     }
 }
