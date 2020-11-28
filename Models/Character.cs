@@ -18,9 +18,8 @@ namespace MurderMysteryCapstone.Models
 
         protected int _id;
         protected string _name;
-        //protected int _locationId;
-        protected int _level;       
-
+        protected int _level;
+        
 
         #endregion
 
@@ -37,13 +36,7 @@ namespace MurderMysteryCapstone.Models
         {
             get { return _name; }
             set { _name = value; }
-        }
-
-        // public int LocationId
-        // {
-        //     get { return _locationId; }
-        //     set { _locationId = value; }
-        // }
+        }       
 
        public int Age
         {
@@ -63,7 +56,7 @@ namespace MurderMysteryCapstone.Models
 
         public Character(int id, string name)
         {
-            _name = name;           
+            _name = name;          
             // _locationId = locationId;
         }
 

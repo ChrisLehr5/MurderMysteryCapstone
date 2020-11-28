@@ -8,7 +8,7 @@ namespace MurderMysteryCapstone.Models
 {
     interface IPerception
     {
-     PerceiveModeName PerceiveMode { get; set; }
+     //PerceiveModeName PerceiveMode { get; set; }
      List<string> Perceptions { get; set; }
 
      string Perceive();

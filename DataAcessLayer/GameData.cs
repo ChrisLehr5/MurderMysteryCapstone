@@ -15,8 +15,8 @@ namespace MurderMysteryCapstone.DataAcessLayer
             return new Player()
             {
                 Id = 1,
-                Name = "Violet",
-                //Age = 13,           
+                Name = "Katherine",
+                Age = 33,           
              
                 Inventory = new ObservableCollection<GameItemQuantity>()
                 {
@@ -26,9 +26,7 @@ namespace MurderMysteryCapstone.DataAcessLayer
                 },
                 Journals = new ObservableCollection<Journal>()
                 {
-                      JournalById(1),
-                      JournalById(2),
-                      JournalById(3),
+                      JournalById(1),                      
                 }
             };
         }
@@ -76,12 +74,10 @@ namespace MurderMysteryCapstone.DataAcessLayer
             gameMap.MapLocations[0, 0] = new Location()
             {
                 Id = 1,
-                Name = "Street",
-                Description = "You exit the cab, taking a moment to stretch.  " +
-               "The trip from school was long and tedious, and you are happy to finally be home.",
-                Accessible = true,
-                ModifiyExperiencePoints = 10,
-                Message = "",
+                Name = "Street View",
+                Description = "You arrive at the Killingsworth Vineyard",
+                Accessible = true,               
+                Message = "As one of Elizabeth's oldest friends, you walk into the house without ringing the doorbell.",
                 Perception = "This is strange",
                 GameItems = new ObservableCollection<GameItemQuantity>()
                 {
@@ -95,18 +91,23 @@ namespace MurderMysteryCapstone.DataAcessLayer
             {
                 Id = 1,
                 Name = "Entrance",
-                Description = "The Family Manor is a stately Victorian, boasting numerous rooms and turrets.  " +
-                "The wrought iron gate swings in the breeze, and the door is slightly ajar. " +
-                "Home from school, you wonder where your aunt is.",
+                Description = "The house is a grand old victorian- the sweeping double staircase leading upstairs  " +
+                "while rooms branch off to either sides. A large fireplace sits against the west wall, and " +
+                "an overstuffed bookcase is placed on the east wall.",
                 Accessible = true,
-                Message = "You expected to be greeted at the gate..." +
-                " It's very unusual that nobody is in sight- leaving you the options of standing here wondering " +
-                "or going inside to see what is going on... "
+                Message = "Two strangers are within the hall with you. One is a glamorous looking woman and the other a middle aged man." +
+                "Neither of them are familair to you but they seem to know each other, talking near the fireplace." +
+                "When you walk into the room their conversation stops. They both watch you, waiting.",
+                Npcs = new ObservableCollection<Npc>()
+                {
+                    NpcById(2001),
+                    NpcById(2002)
+                },
             };
 
             gameMap.MapLocations[1, 1] = new Location()
             {
-                Id = 2,
+                Id = 3,
                 Name = "Front Hallway",
                 Description = "The Hallway connected to the entrance. " +
                 "To your left is the door to the parlor, to the right the vaulted entrance to the library." + "" +
@@ -118,7 +119,7 @@ namespace MurderMysteryCapstone.DataAcessLayer
 
             gameMap.MapLocations[0, 2] = new Location()
             {
-                Id = 3,
+                Id = 4,
                 Name = "Parlor",
                 Description = "The rarely used formal Parlor. The furniture is ornate and looks very uncomfortable." +
                 "You notice that the curio cabinet against the far wall has a drawer that is slightly ajar, and there is a hand mirror sitting " +
@@ -137,7 +138,7 @@ namespace MurderMysteryCapstone.DataAcessLayer
 
             gameMap.MapLocations[2, 1] = new Location()
             {
-                Id = 4,
+                Id = 5,
                 Name = "Library",
                 Description = "The giant room is stuffed to the brim with books and exotic curios. Your family has always liked" +
                 "to travel, and centuries of collecting has seen this wing expanded twice. There is a small glass door leading to the garden here.",
@@ -157,7 +158,7 @@ namespace MurderMysteryCapstone.DataAcessLayer
 
             gameMap.MapLocations[3, 1] = new Location()
             {
-                Id = 5,
+                Id = 6,
                 Name = "Garden",
                 Description = "The air is cool and heavy inside the tropical garden. The outside world melts away between the thick glass walls." +
                 "A large water feature dominates the center of the room, of which inside stands a statue of a woman pouring water from a pitcher." +
@@ -180,7 +181,7 @@ namespace MurderMysteryCapstone.DataAcessLayer
             };
             gameMap.MapLocations[1, 2] = new Location()
             {
-                Id = 6,
+                Id = 7,
                 Name = "Hallway Middle",
                 Description = "Thick rugs are still under feet in the middle of the Hallway but you can now hear the ticking of a clock. " +
                 "Further inspections reveal a large grandfather clock.",
@@ -244,7 +245,12 @@ namespace MurderMysteryCapstone.DataAcessLayer
             {
                 new MundaneItem(2001, "Gold Coin", "24 karat gold coin", "You don't know where to use this right now.","Old. Odd that it appears so well preserved...", MundaneItem.UseActionType.OPENLOCATION),
                 new MundaneItem(2004, "Emerald Necklace","Dazzling emerald necklace","Not really your style.","Strange that this is inside the garden...", MundaneItem.UseActionType.OPENLOCATION),
+                new Key(4001, "Parlor Key", "Brassy and well worn, this is the key to the formal parlor.", "You have opened the Parlor.","This key is cold to the touch. Almost like ice...", Key.UseActionType.OPENLOCATION),
+                new Key(4003, "Study Key", "Large silver key. You haven't seen it before.", "You have opened the Study.","This key looks brand new.", Key.UseActionType.OPENLOCATION),
+                new Key(4002, "Bent Key", "This must have fallen from someones pocket...","A strange tingle passes up your arm, as your vision fades, you realize the key was poisoned...", "Seems dangerously sharp.", Key.UseActionType.KILLPLAYER),
+                new Key(4004, "Stairwell Key", "Ornate key.","You open the stairwell. What mysteries will upstairs hold?", "Looks like a grinning imp is carved into the key.", Key.UseActionType.PLAYERWIN)
             };
+
         }
 
         public static List<Npc> Npcs()
@@ -254,28 +260,37 @@ namespace MurderMysteryCapstone.DataAcessLayer
                 new NpcCharacter()
                 {
                     Id = 2001,
-                    Name = "Parrot",
+                    Name = "Woman",
                     Description = "A striking red parrot. Its cold flat eyes follow you around the room, like it is waiting for something.",
                     Messages = new List<string>()
                     {
-                        "Pretty Bird!",
-                        "Give me the shiny!",
-                        "SQUAWK"
+                        "My name is Dr. Sally Forth- I am Elizabeths new neighbor- I came over to talk to Elizabeth about a party I'm hosting next week." +
+                        "She flicks her long ash blonde hair away from her face before continuing. \"I simply must have some overflow parking. Her empty field would be perfect!" +
+                        "After all\", she continues tactlessly, \"Now that Robert is dead she won't be needing it."                        
                     },
+                    Perceptions = new List<string>()
+                    {
+                        "You don't get the feeling that Elizabeth knows this woman very well, she speaks of her as an acquaintance, not a close friend." +
+                        "You wonder why Elizabeth agreed to see her tonight, of all times."
+                    }
 
                 },
 
                 new NpcCharacter()
                 {
                     Id = 2002,
-                    Name = "Butler Smith",
-                    Description = "You recognize the etheral form of the family butler Smith flickering in the room. A Ghost!?!",
+                    Name = "Franklin",
+                    Description ="Pleasant looking",
                     Messages = new List<string>()
                     {
-                        "You shouldn't be here!",
-                        "I am sorry, the lady is out. May I take a message?",
-                        "I feel...hungry gazing upon you..."
+                       "You walk over to the man. He looks at you with interest. \"Hello, my name is Franklin! I am a friend of Elizabeths from her old hometown."
+                    + "Last time we spoke, she invited me to stop by. I'm on vacation in happened to be driving through town, so I decided to stop by."
                     },
+                    Perceptions = new List<string>
+                    {
+                        "You get the feeling that Franklin knows Elizabeth well, although you find it odd that not once in the 10 years you've know her she has mentioned him."
+                        + "Maybe an old boyfriend? But why wouldn't he stop for Robert's funeral...?"
+                    }
                 },
 
                 new NpcCharacter()
@@ -323,19 +338,7 @@ namespace MurderMysteryCapstone.DataAcessLayer
                     },
                 },
 
-
-                new JournalTravel()
-                {
-                    Id = 2,
-                    Name = "Locked Locations",
-                    Description = "Figure out how to get into these locations.",
-                    Status = Journal.JournalStatus.Incomplete,
-                    RequiredLocations = new List<Location>()
-                   {
-                        LocationById(5),
-                        LocationById(8)
-                    },
-            }   };
+            };
         }
     }
 }

@@ -129,14 +129,14 @@
                     <Label Content="Age       " Style="{StaticResource MainPanelLabelStyle}"/>
                     <TextBox Name="AgeTextBox" Style="{StaticResource MainPanelTextBoxStyle}"/>
                 </StackPanel>
-                <StackPanel>                             
+                <StackPanel>
                     <Button
-                    Name="ClearButton"                    
-                    Content="Reset"
-                    Margin="10"
+                    Name="OkButton"                  
                     Style="{StaticResource MainPanelButtonStyle}" 
-                    HorizontalAlignment="Center"    
-                    Click="ClearButton_Click"/>
+                    Content="Begin Game"
+                    HorizontalAlignment="Center"
+                    Margin="10"
+                    Click="OkButton_Click"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock 
@@ -172,13 +172,14 @@
                 </TextBox>
                 <StackPanel>
                     <Button
-                    Name="OkButton"                  
+                    Name="ClearButton"                    
+                    Content="Reset"
+                    Margin="10"
                     Style="{StaticResource MainPanelButtonStyle}" 
-                    Content="Begin Game"
-                    HorizontalAlignment="Center"                  
-                    Click="OkButton_Click"/>
+                    HorizontalAlignment="Center"    
+                    Click="ClearButton_Click"/>
                 </StackPanel>
-            </StackPanel>
+            </StackPanel>            
         </Border>
     </Grid>
 </Window>

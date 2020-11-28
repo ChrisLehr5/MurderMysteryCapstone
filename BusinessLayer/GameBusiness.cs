@@ -11,7 +11,7 @@ namespace MurderMysteryCapstone.BusinessLayer
 {
     public class GameBusiness
     {
-        bool _newPlayer = true;
+        bool _newPlayer = false;
 
         GameSessionViewModel _gameSessionViewModel;
         Player _player = new Player();
@@ -80,7 +80,7 @@ namespace MurderMysteryCapstone.BusinessLayer
             // dialog window is initially hidden to mitigate issue with
             // main window closing after dialog window closes
 
-            _playerSetupView.Close();
+            //_playerSetupView.Close();
         }
     }
 }

@@ -206,7 +206,7 @@
                         </StackPanel>
                         <StackPanel
                             Orientation="Vertical"
-                            Height="50"  />
+                            Height="5"  />
                         <StackPanel
                             Orientation="Vertical"
                             Height="30"  >
@@ -227,22 +227,19 @@
                                 HorizontalAlignment="Left">
                             <TextBox Text="{Binding Player.Trait}" IsReadOnly="True" Name="textBox2" Style="{StaticResource MainPanelTextBoxStyle}"/>
                             <Label Content="Trait" Style="{StaticResource MainPanelLabelStyle}"/>
-                        </StackPanel>
+                        </StackPanel>                       
                         <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Left">
-                            <TextBox Text="{Binding Player.Age}" IsReadOnly="True" Name="textBox3" Style="{StaticResource MainPanelTextBoxStyle}"/>
-                            <Label Content="Age" Style="{StaticResource MainPanelLabelStyle}"/>
-                        </StackPanel>
-                        <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Left">
-                            <TextBox Text="{Binding Player.PlayStyle}" IsReadOnly="True" Name="textBox4" Style="{StaticResource MainPanelTextBoxStyle}"/>
-                            <Label Content="Play Style" Style="{StaticResource MainPanelLabelStyle}"/>
-                        </StackPanel>
-                        <StackPanel
-                            Orientation="Vertical">
-
+                            Orientation="Vertical"
+                            Margin="30">
+                            <Button 
+                                Content="Speak To" 
+                                Style="{StaticResource MainPanelButtonStyle}" 
+                                Click="SpeakToButton_Click"/>
+                            <Button
+                                Content="Perceive" 
+                                Margin="5"
+                                Style="{StaticResource MainPanelButtonStyle}" 
+                                Click="PerceiveButton_Click"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -285,7 +282,6 @@
                                         VerticalContentAlignment="top"
                                         Style="{StaticResource MainPanelTextBoxStyle}"/>
                                 </Border>
-
                                 <TabControl 
                                     x:Name="LocationInfoTabControl"
                                     Width="350">
@@ -293,7 +289,7 @@
                                         x:Name="ItemsInfoTabItem">
                                         <DataGrid 
                                             x:Name="LocationItemsDataGrid"
-                                            Height="150"
+                                            Height="100"
                                             ItemsSource="{Binding CurrentLocation.GameItems}" 
                                             SelectedItem="{Binding CurrentGameItem}"
                                             AutoGenerateColumns="False"
@@ -322,7 +318,7 @@
                                         x:Name="NpcsInfoTabItem">
                                         <DataGrid 
                                             x:Name="LocationNpcsDataGrid"
-                                            Height="150"
+                                            Height="100"
                                             ItemsSource="{Binding CurrentLocation.Npcs}" 
                                             SelectedItem="{Binding CurrentNpc}"
                                             AutoGenerateColumns="False"
@@ -345,19 +341,7 @@
 
                                 </TabControl>
                             </StackPanel>
-                        </StackPanel>
-                        <StackPanel
-                            Grid.Row="1"
-                            Orientation="Horizontal">
-                            <Button 
-                                Content="Speak To" 
-                                Style="{StaticResource MainPanelButtonStyle}" 
-                                Click="SpeakToButton_Click"/>
-                            <Button
-                                Content="Perceive" 
-                                Style="{StaticResource MainPanelButtonStyle}" 
-                                 Click="PerceiveButton_Click"/>
-                        </StackPanel>
+                        </StackPanel>                     
                     </Grid>
                 </Border>
                 <Border
@@ -427,7 +411,7 @@
                                 x:Name="TreasureTabItem">
                                 <DataGrid 
                                     x:Name="TreasureDataGrid"
-                                    ItemsSource="{Binding Player.Treasure}"
+                                    ItemsSource="{Binding Player.MundaneItem}"
                                     SelectedItem="{Binding CurrentGameItem}"
                                     AutoGenerateColumns="False"
                                     HeadersVisibility="Column">
@@ -503,6 +487,9 @@
                                 Style="{StaticResource MainPanelButtonStyle}" 
                                 Click="InspectButton_Click"/>
                         </StackPanel>
+                        <StackPanel>
+                            
+                        </StackPanel>
 
                     </StackPanel>
                 </Border>
@@ -524,7 +511,7 @@
                                 Height="100"
                                 Width="auto"
                                 Margin="10"
-                                Background="WhiteSmoke"
+                                Background="LightGray"
                                 BorderThickness="0"
                                 TextWrapping="Wrap"
                                 Text="{Binding PerceptionDisplay, Mode=OneWay}"

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace MurderMysteryCapstone.Models
 {
-    public class NpcCharacter : Npc, ISpeak//, IPerception
+    public class NpcCharacter : Npc, ISpeak, IPerception
     {
-        public List<string> Messages { get; set; }      
-        public List<string>Perceptions { get; set; }
+        public List<string> Messages { get; set; }
+        public List<string> Perceptions { get; set; }
+        //public PerceiveModeName BattleMode { get; set; }
 
         protected override string InformationText()
         {
@@ -77,7 +78,10 @@ namespace MurderMysteryCapstone.Models
         /// <returns>message text</returns>
         private string GetPerception()
         {
-            return "";
+            Random r = new Random();
+            int perceptionIndex = r.Next(0, Perceptions.Count());
+            return Perceptions[perceptionIndex];
         }
+
     }
 }

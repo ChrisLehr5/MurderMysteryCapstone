@@ -122,7 +122,7 @@
                                     Click="JournalStatusWindowClose_Click"/>
                                 <Label 
                                     Margin="10"
-                                    Content="Current Mission Information" 
+                                    Content="Current Journal Information" 
                                     HorizontalAlignment="Center"
                                     Style="{StaticResource MainPanelLabelStyle}"/>
                                 <Border
@@ -138,12 +138,11 @@
                                         Background="WhiteSmoke"
                                         BorderThickness="0"
                                         TextWrapping="Wrap"
-                                        Text="{Binding MissionInformation, Mode=OneWay}"
+                                        Text="{Binding JournalInformation, Mode=OneWay}"
                                         VerticalScrollBarVisibility="Auto"
                                         VerticalContentAlignment="top"
                                         Style="{StaticResource MainPanelTextBoxStyle}"/>
                                 </Border>
-
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -157,7 +156,7 @@
                             x:Name="LocationItemsDataGrid"
                             Height="300"
                             Margin="10"
-                            ItemsSource="{Binding Missions}" 
+                            ItemsSource="{Binding Journals}" 
                             AutoGenerateColumns="False"
                             HeadersVisibility="Column">
                             <DataGrid.Columns>
@@ -199,7 +198,6 @@
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
-
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>

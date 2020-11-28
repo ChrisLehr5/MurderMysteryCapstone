@@ -33,7 +33,7 @@ namespace MurderMysteryCapstone.Models
             Id = id;
             Name = name;            
             Description = description;
-        }
+        }      
 
         protected abstract string InformationText();
     }

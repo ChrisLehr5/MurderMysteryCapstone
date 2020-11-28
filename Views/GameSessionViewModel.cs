@@ -41,11 +41,7 @@ namespace MurderMysteryCapstone.Views
         {
             get { return _currentLocation.Message; }
         }
-
-        public string PerceptionDisplay
-        {
-            get { return _currentLocation.Perception; }
-        }
+      
         public Map GameMap
         {
             get { return _gameMap; }
@@ -295,10 +291,7 @@ namespace MurderMysteryCapstone.Views
                 // display a new message if available
                 //
                 OnPropertyChanged(nameof(MessageDisplay));
-                //
-                //display new perception if available
-                //
-                OnPropertyChanged(nameof(PerceptionDisplay));
+               
             }
         }
 
@@ -439,9 +432,9 @@ namespace MurderMysteryCapstone.Views
                 //case Potion potion:
                  //   ProcessPotionUse(potion);
                  //   break;
-                //case Key key:
-                //    ProcessKeyUse(key);
-                //    break;
+                case Key key:
+                    ProcessKeyUse(key);
+                    break;
                 case MundaneItem mundaneItem:
                     ProcessMundaneItemUse(mundaneItem);
                     break;
@@ -456,6 +449,31 @@ namespace MurderMysteryCapstone.Views
 
             message = CurrentGameItem.GameItem.Inspect;
             CurrentLocationInformation = message;
+        }
+
+        /// <summary>
+        /// process the effects of using the key
+        /// </summary>
+        /// <param name="key">key</param>
+        private void ProcessKeyUse(Key key)
+        {
+            string message;
+
+            switch (key.UseAction)
+            {
+                case Key.UseActionType.OPENLOCATION:
+                    message = _gameMap.OpenLocationsByKey(key.Id);
+                    CurrentLocationInformation = key.UseMessage;
+                    break;
+                case Key.UseActionType.KILLPLAYER:
+                    OnPlayerDies(key.UseMessage);
+                    break;
+                case Key.UseActionType.PLAYERWIN:
+                    OnPlayerWins(key.UseMessage);
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <summary>
@@ -540,10 +558,10 @@ namespace MurderMysteryCapstone.Views
 
         public void OnPlayerPercieve()
         {
-            if (CurrentNpc != null && CurrentNpc is ISpeak)
+            if (CurrentNpc != null && CurrentNpc is IPerception)
             {
-                ISpeak speakingNpc = CurrentNpc as ISpeak;
-                CurrentLocationInformation = speakingNpc.Speak();
+                IPerception perceivingNpc = CurrentNpc as IPerception;
+                CurrentLocationInformation = perceivingNpc.Perceive();
                 _player.NpcsEngaged.Add(_currentNpc);
 
             }
@@ -607,32 +625,32 @@ namespace MurderMysteryCapstone.Views
         /// <returns>mission status information text</returns>
         private string GenerateJournalStatusInformation()
         {
-            string missionStatusInformation;
+            string journalStatusInformation;
 
-            double totalMissions = _player.Journals.Count();
-            double missionsCompleted = _player.Journals.Where(m => m.Status == Journal.JournalStatus.Complete).Count();
+            double totalJournals = _player.Journals.Count();
+            double journalsCompleted = _player.Journals.Where(m => m.Status == Journal.JournalStatus.Complete).Count();
 
-            int percentMissionsCompleted = (int)((missionsCompleted / totalMissions) * 100);
-            missionStatusInformation = $"Journal Entries Discovered: {percentMissionsCompleted}%" + NEW_LINE;
+            int percentJournalsCompleted = (int)((journalsCompleted / totalJournals) * 100);
+            journalStatusInformation = $"Journal Entries Discovered: {percentJournalsCompleted}%" + NEW_LINE;
 
-            if (percentMissionsCompleted == 0)
+            if (percentJournalsCompleted == 0)
             {
-                missionStatusInformation += "No quests complete at this point.";
+                journalStatusInformation += "No quests complete at this point.";
             }
-            else if (percentMissionsCompleted == 50)
+            else if (percentJournalsCompleted == 50)
             {
-                missionStatusInformation += "Half way there!";
+                journalStatusInformation += "Half way there!";
             }
-            else if (percentMissionsCompleted == 66)
+            else if (percentJournalsCompleted == 66)
             {
-                missionStatusInformation += "So close! You can do it!";
+                journalStatusInformation += "So close! You can do it!";
             }
-            else if (percentMissionsCompleted == 100)
+            else if (percentJournalsCompleted == 100)
             {
-                missionStatusInformation += "Congratulations, you have completed all quests.";
+                journalStatusInformation += "Congratulations, you have completed all quests.";
             }
 
-            return missionStatusInformation;
+            return journalStatusInformation;
         }
 
 
@@ -665,6 +683,19 @@ namespace MurderMysteryCapstone.Views
 
             return sb.ToString(); ;
         }
-        
+
+        /// <summary>
+        /// handle the perception to event in the view
+        /// </summary>
+        public void OnPlayerPerceive()
+        {
+            if (CurrentNpc != null && CurrentNpc is IPerception)
+            {
+                IPerception perceiveNpc = CurrentNpc as IPerception;
+                CurrentLocationInformation = perceiveNpc.Perceive();
+                _player.NpcsEngaged.Add(_currentNpc);
+                _player.UpdateJournalStatus();
+            }
+        }
     }
 }

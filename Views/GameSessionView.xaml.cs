@@ -85,9 +85,7 @@ namespace MurderMysteryCapstone.Views
             using (StreamWriter writer = new StreamWriter(writerfile))
             {
                 writer.WriteLine(textBox1.Text);
-                writer.WriteLine(textBox2.Text);
-                writer.WriteLine(textBox3.Text);
-                writer.WriteLine(textBox4.Text);
+                writer.WriteLine(textBox2.Text);                
             }
             MessageBoxResult result = MessageBox.Show("The game has saved!");
         }
@@ -125,7 +123,6 @@ namespace MurderMysteryCapstone.Views
             {
                 _gameSessionViewModel.OnPlayerPercieve();
             }
-
         }
 
         private void JournalStatus_Click(object sender, RoutedEventArgs e)
