@@ -23,6 +23,7 @@ namespace MurderMysteryCapstone
         public MainWindow()
         {
             InitializeComponent();
+
         }
     }
 }

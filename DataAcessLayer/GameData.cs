@@ -114,7 +114,11 @@ namespace MurderMysteryCapstone.DataAcessLayer
                 "The Hallway itself is padded with thick rugs, the walls covered in knicknacks and curios from all over the world.",
                 Accessible = true,
                 Message = "The floor creaks beneath your feet.",
-                Perception = "You feel a foreboading."
+                Perception = "You feel a foreboading.",
+                Npcs = new ObservableCollection<Npc>()
+                {
+                    NpcById(2003)                   
+                },
             };
 
             gameMap.MapLocations[0, 2] = new Location()
@@ -130,16 +134,20 @@ namespace MurderMysteryCapstone.DataAcessLayer
                 GameItems = new ObservableCollection<GameItemQuantity>()
                 {
                     new GameItemQuantity(GameItemById(2003), 1),
-                    new GameItemQuantity(GameItemById(3001), 1)
-                }
+                    new GameItemQuantity(GameItemById(3001), 1),
+                },
+                 Npcs = new ObservableCollection<Npc>()
+                {
+                    NpcById(2004)
+                },
             };
 
             gameMap.MapLocations[2, 1] = new Location()
             {
                 Id = 5,
-                Name = "Library",
-                Description = "The giant room is stuffed to the brim with books and exotic curios. Your family has always liked" +
-                "to travel, and centuries of collecting has seen this wing expanded twice. There is a small glass door leading to the garden here.",
+                Name = "Upstairs",
+                Description = "Elizabth may be upstairs in her study. She is known to get lost within books time to time." +
+                "Perhaps she simply lost track of the time?" + "You decide to go check alone, heading up the sweeping staircase towards her study.",
                 Accessible = true,
                 Message = "",
                 GameItems = new ObservableCollection<GameItemQuantity>()
@@ -150,7 +158,7 @@ namespace MurderMysteryCapstone.DataAcessLayer
                 },
                 Npcs = new ObservableCollection<Npc>()
                 {
-                    NpcById(2001)
+                    NpcById(2004)
                 }
             };
 
@@ -261,12 +269,13 @@ namespace MurderMysteryCapstone.DataAcessLayer
                 {
                     Id = 2001,
                     Name = "Woman",
-                    Description = "A striking red parrot. Its cold flat eyes follow you around the room, like it is waiting for something.",
+                    Description = "A woman with long blonde hair and glamorous clothing.",
                     Messages = new List<string>()
                     {
                         "My name is Dr. Sally Forth- I am Elizabeths new neighbor- I came over to talk to Elizabeth about a party I'm hosting next week." +
                         "She flicks her long ash blonde hair away from her face before continuing. \"I simply must have some overflow parking. Her empty field would be perfect!" +
-                        "After all\", she continues tactlessly, \"Now that Robert is dead she won't be needing it."                        
+                        "After all\", she continues tactlessly, \"Now that Robert is dead she won't be needing it.", 
+                        "You are annoying me."
                     },
                     Perceptions = new List<string>()
                     {
@@ -277,14 +286,16 @@ namespace MurderMysteryCapstone.DataAcessLayer
                 },
 
                 new NpcCharacter()
+
                 {
                     Id = 2002,
                     Name = "Franklin",
-                    Description ="Pleasant looking",
+                    Description ="Pleasant looking man, dressed up for a formal event.",
                     Messages = new List<string>()
                     {
                        "You walk over to the man. He looks at you with interest. \"Hello, my name is Franklin! I am a friend of Elizabeths from her old hometown."
-                    + "Last time we spoke, she invited me to stop by. I'm on vacation in happened to be driving through town, so I decided to stop by."
+                    + "Last time we spoke, she invited me to stop by. I'm on vacation in happened to be driving through town, so I decided to stop by.",
+                       "Ummm....you have something else you want?"
                     },
                     Perceptions = new List<string>
                     {
@@ -296,26 +307,50 @@ namespace MurderMysteryCapstone.DataAcessLayer
                 new NpcCharacter()
                 {
                     Id = 2003,
-                    Name = "Wailing Lady",
-                    Description = "A woman in a tattered white dress.",
+                    Name = null,
+                    Description = null,
                     Messages = new List<string>()
                     {
-                        "You must find my mirror!",
-                        "Fool!",
-                        ".............."
+                        "Your voice carries down the seemingly empty hallway, garnering no response.",
                     },
+                    Perceptions = new List<string>
+                    {
+                        "Looking closer you notice that several places on the walls are discolored. Has Elizabth been forced to sell off antiques for money?" +
+                        "On painting in particular seems to leer at you. A portrait of man wearing a severely tailored suit and a top hat. You swear that the eyes glitter"+
+                        "almost as if it was alive...Creeped out you move closer, slowly as to not alarm anyone. Suddenly you thrust your finger out and hit the painting in the eyeball. The -warm- squishy"+
+                        "eyeball. It screams in pain, as you turn and flee the hall in terror."
+                    }
                 },
 
                 new NpcCharacter()
                 {
                     Id= 2004,
-                    Name ="Mouse",
-                    Description = "A small gray mouse.",
+                    Name = null,
+                    Description = null,
                     Messages = new List<string>()
                     {
-                        "Squeek!",
-                        "Squeeeekkkkk!"
+                        "You hum to yourself."
                     },
+                    Perceptions = new List<string>
+                    {
+                        "While you are bored, you aren't bored enough to go poking around the room further. You decide to stick close to the fire to keep warm. After all Elizabeth"+
+                        "should appear anytime...right?"
+                    }
+                },
+
+                new NpcCharacter()
+                {
+                    Id= 2005,
+                    Name = null,
+                    Description = null,
+                    Messages = new List<string>()
+                    {
+                        ""
+                    },
+                    Perceptions = new List<string>
+                    {
+                        "The upstairs lights taper off as you get closer to Elizabeth's study, casting eerie shadows."
+                    }
                 }
             };
 

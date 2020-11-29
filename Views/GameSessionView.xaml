@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MurderMysteryCapstone.Views"
         mc:Ignorable="d"
        Background="Gray"
-        Width="1000"
+        Width="1500"
         Height="600"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow">
@@ -272,7 +272,7 @@
                                     Style="{StaticResource BorderStyle}">
                                     <TextBox
                                         Height="100"
-                                        Width="350"
+                                        Width="600"
                                         Margin="10"
                                         Background="WhiteSmoke"
                                         BorderThickness="0"
@@ -314,7 +314,7 @@
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </TabItem>
-                                    <TabItem Header="NPCs"
+                                    <TabItem Header="Characters Within Location"
                                         x:Name="NpcsInfoTabItem">
                                         <DataGrid 
                                             x:Name="LocationNpcsDataGrid"

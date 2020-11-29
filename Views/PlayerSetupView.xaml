@@ -179,7 +179,7 @@
                     HorizontalAlignment="Center"    
                     Click="ClearButton_Click"/>
                 </StackPanel>
-            </StackPanel>            
+            </StackPanel>           
         </Border>
     </Grid>
 </Window>
