@@ -80,9 +80,7 @@ namespace MurderMysteryCapstone.Views
                 //_player.PlayStyle = playStyle;
                 //_player.Trait = trait;
                 _player.Inventory = new ObservableCollection<GameItemQuantity>()
-                {
-                    new GameItemQuantity(GameData.GameItemById(1002), 1),
-                    new GameItemQuantity(GameData.GameItemById(1003), 1),
+                {                   
                     new GameItemQuantity(GameData.GameItemById(2001), 5),
                 };               
 

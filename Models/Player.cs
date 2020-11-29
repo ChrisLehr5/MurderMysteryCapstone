@@ -10,17 +10,13 @@ namespace MurderMysteryCapstone.Models
 {
     public class Player : Character//, IPerception
     {
-        #region FIELDS
-
-
-        private int _lives;
-        private int _health;
+        #region FIELDS        
 
         private List<Location> _locationsVisited;
         private List<Npc> _npcsEngaged;
         private PerceiveModeName _perceiveMode;
         private ObservableCollection<GameItemQuantity> _inventory;
-        //private ObservableCollection<GameItemQuantity> _potions;
+        private ObservableCollection<GameItemQuantity> _potions;
         private ObservableCollection<GameItemQuantity> _mundaneItem;
         //private ObservableCollection<GameItemQuantity> _weapons;
         private ObservableCollection<GameItemQuantity> _keys;
@@ -58,18 +54,13 @@ namespace MurderMysteryCapstone.Models
         {
             get { return _inventory; }
             set { _inventory = value; }
-        }
-        //public ObservableCollection<GameItemQuantity> Weapons
-        //{
-        //    get { return _weapons; }
-        //    set { _weapons = value; }
-        //}
+        }       
 
-        //public ObservableCollection<GameItemQuantity> Potions
-        //{
-        //    get { return _potions; }
-        //    set { _potions = value; }
-        //}
+        public ObservableCollection<GameItemQuantity> Potions
+        {
+           get { return _potions; }
+           set { _potions = value; }
+        }
 
         public ObservableCollection<GameItemQuantity> MundaneItem
         {
@@ -93,7 +84,7 @@ namespace MurderMysteryCapstone.Models
             _locationsVisited = new List<Location>();
             _npcsEngaged = new List<Npc>();
             _mundaneItem = new ObservableCollection<GameItemQuantity>();
-            //_potions = new ObservableCollection<GameItemQuantity>();
+            _potions = new ObservableCollection<GameItemQuantity>();
             _keys = new ObservableCollection<GameItemQuantity>();
             _journals = new ObservableCollection<Journal>();
         }
@@ -123,15 +114,13 @@ namespace MurderMysteryCapstone.Models
 
         public void UpdateInventoryCategories()
         {
-            //Potions.Clear();
-            //Weapons.Clear();
+            Potions.Clear();            
             MundaneItem.Clear();
             Keys.Clear();
 
             foreach (var gameItemQuantity in _inventory)
             {
-                //if (gameItemQuantity.GameItem is Potion) Potions.Add(gameItemQuantity);
-                // if (gameItemQuantity.GameItem is Weapon) Weapons.Add(gameItemQuantity);
+                if (gameItemQuantity.GameItem is Potion) Potions.Add(gameItemQuantity);                
                 if (gameItemQuantity.GameItem is MundaneItem) MundaneItem.Add(gameItemQuantity);
                 if (gameItemQuantity.GameItem is Key) Keys.Add(gameItemQuantity);
             }
@@ -183,6 +172,7 @@ namespace MurderMysteryCapstone.Models
                     gameItemQuantity.Quantity--;
                 }
             }
+
             UpdateInventoryCategories();
         }
 

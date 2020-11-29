@@ -23,7 +23,7 @@ namespace MurderMysteryCapstone.Models
         private bool _accessible;
         private int _requiredExperiencePoints;
         private int _requiredKeyId;
-        private int _requiredTreasureId;
+        private int _requiredMundaneItemId;
         private int _modifiyExperiencePoints;
         private int _modifyHealth;
         private int _modifyLives;
@@ -83,8 +83,8 @@ namespace MurderMysteryCapstone.Models
 
         public int RequiredMundaneItemId
         {
-            get { return _requiredTreasureId; }
-            set { _requiredTreasureId = value; }
+            get { return _requiredMundaneItemId; }
+            set { _requiredMundaneItemId = value; }
         }
 
         public int ModifyHealth
@@ -109,7 +109,7 @@ namespace MurderMysteryCapstone.Models
         {
             get { return _perception; }
             set { _perception = value; }
-        }
+        }       
 
 
         public ObservableCollection<GameItemQuantity> GameItems
@@ -135,7 +135,9 @@ namespace MurderMysteryCapstone.Models
 
         #endregion
 
-        #region METHODS       
+        #region METHODS    
+             
+
 
         public void UpdateLocationGameItems()
         {

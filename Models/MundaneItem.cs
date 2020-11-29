@@ -18,8 +18,7 @@ namespace MurderMysteryCapstone.Models
 
         public MundaneItem(int id, string name, string description, string useMessage, string inspect, UseActionType useAction)
              : base(id, name, description, useMessage, inspect)
-        {
-            //Type = type;
+        {          
             UseAction = useAction;
         }
 

@@ -108,9 +108,9 @@ namespace MurderMysteryCapstone.DataAcessLayer
             gameMap.MapLocations[1, 1] = new Location()
             {
                 Id = 3,
-                Name = "Front Hallway",
-                Description = "The Hallway connected to the entrance. " +
-                "To your left is the door to the parlor, to the right the vaulted entrance to the library." + "" +
+                Name = "Hallway",
+                Description = "The Hallway runs from the entrance."+
+                "Down the hallway on your left is the door to the formal parlor and to the right the landing to the stairwell, leading upstairs." + "" +
                 "The Hallway itself is padded with thick rugs, the walls covered in knicknacks and curios from all over the world.",
                 Accessible = true,
                 Message = "The floor creaks beneath your feet.",
@@ -120,15 +120,13 @@ namespace MurderMysteryCapstone.DataAcessLayer
             gameMap.MapLocations[0, 2] = new Location()
             {
                 Id = 4,
-                Name = "Parlor",
-                Description = "The rarely used formal Parlor. The furniture is ornate and looks very uncomfortable." +
-                "You notice that the curio cabinet against the far wall has a drawer that is slightly ajar, and there is a hand mirror sitting " +
-                "on the small desk between the chairs.",
+                Name = "Formal Parlor",
+                Description = "This portion of the house is quite grand. The original parlor sports wooden walls and high, valuted ceilings."+
+                "The large fireplace in the corner crackles, casting shadows over the old fashioned paintings adorned the walls.",
                 Accessible = false,
-                RequiredKeyId = 4001,
-                RequiredExperiencePoints = 4000,
-                Message = "The air in this room is musty, and the chairs look overstuffed and uncomfortable." +
-                "You don't think your Aunt has ever used this room. She is much too informal!",
+                RequiredKeyId = 4001,                
+                Message = "The fire in the fireplace must have been started recently, as the fire burns steadily. Surely Elizabeth is somewhere in the house.",
+                Perception ="",
                 GameItems = new ObservableCollection<GameItemQuantity>()
                 {
                     new GameItemQuantity(GameItemById(2003), 1),
@@ -218,12 +216,14 @@ namespace MurderMysteryCapstone.DataAcessLayer
             gameMap.MapLocations[1, 4] = new Location()
             {
                 Id = 8,
-                Name = "Study",
-                Description = "The door to the left. Upon opening it you find a small room, someone's study area. It is cluttered.",
+                Name = "Cellar Door",
+                Description = "Familiar with the house, you know the cellar is located through this door." + 
+                "Maybe Elizabeth went down to get a bottle of wine for her guests?",
                 Accessible = false,
                 RequiredKeyId = 4003,
                 RequiredExperiencePoints = 4000,
-                Message = "You feel as if someone...or something is watching you.",
+                Message = "As you approach the door the man, Franklin, yells out from behind you in the hallway. \"I'm coming too\"! He does not give you the option"+
+                "of declining. You shrug your shoulders in acceptance.",
                 GameItems = new ObservableCollection<GameItemQuantity>()
                 {
                     new GameItemQuantity(GameItemById(2001), 1),

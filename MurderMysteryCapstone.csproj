@@ -84,6 +84,7 @@
     <Compile Include="Models\Npc.cs" />
     <Compile Include="Models\NpcCharacter.cs" />
     <Compile Include="Models\PerceiveModeEnum.cs" />
+    <Compile Include="Models\Potion.cs" />
     <Compile Include="UtilityClass\ObservableObject.cs" />
     <Compile Include="Views\GameSessionView.xaml.cs">
       <DependentUpon>GameSessionView.xaml</DependentUpon>
