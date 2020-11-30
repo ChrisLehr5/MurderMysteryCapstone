@@ -8,7 +8,7 @@ using MurderMysteryCapstone.UtilityClass;
 
 namespace MurderMysteryCapstone.Models
 {
-    public class Player : Character//, IPerception
+    public class Player : Character
     {
         #region FIELDS        
 
@@ -17,8 +17,7 @@ namespace MurderMysteryCapstone.Models
         private PerceiveModeName _perceiveMode;
         private ObservableCollection<GameItemQuantity> _inventory;
         private ObservableCollection<GameItemQuantity> _potions;
-        private ObservableCollection<GameItemQuantity> _mundaneItem;
-        //private ObservableCollection<GameItemQuantity> _weapons;
+        private ObservableCollection<GameItemQuantity> _mundaneItem;        
         private ObservableCollection<GameItemQuantity> _keys;
         private ObservableCollection<Journal> _journals;
 

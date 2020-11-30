@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.Sql;
 
 namespace MurderMysteryCapstone.Views
 {
@@ -19,9 +20,16 @@ namespace MurderMysteryCapstone.Views
     /// </summary>
     public partial class HelpWindow : Window
     {
+        string dbConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PlayerDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        
         public HelpWindow()
         {
             InitializeComponent();
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

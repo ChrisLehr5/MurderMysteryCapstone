@@ -1,19 +1,24 @@
-﻿<Window x:Class="MurderMysteryCapstone.Views.HelpWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MurderMysteryCapstone.Views"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="MurderMysteryCapstone.Views.HelpWindow"
         mc:Ignorable="d"
-        Title="HelpWindow" Height="450" Width="800">
-    <Grid>
-        <Grid>
+        Title="HelpWindow" Height="450" Width="800">    
+    <Grid>        
+        <Grid>            
             <StackPanel>
+                <Button 
+                      Content="Save Game"                        
+                      Click="SaveButton_Click"/>
                 <TextBlock Margin="5" Text="Welcome!"/>
                 <TextBlock Margin="5" Text="This is a puzzle based game that takes place inside your families mansion." />
                 <TextBlock Margin="5" Text="You will use the items inside to decipher what strange circumstances have occured while you have been away at school."/>
                 <TextBlock Margin="5" Text="Solve the mystery!"/>
-            </StackPanel>
+                <TextBox Name="Name" Height="23" TextWrapping="Wrap"/>
+            </StackPanel>            
         </Grid>
     </Grid>
 </Window>

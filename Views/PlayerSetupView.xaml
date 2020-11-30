@@ -129,14 +129,27 @@
                     <Label Content="Age       " Style="{StaticResource MainPanelLabelStyle}"/>
                     <TextBox Name="AgeTextBox" Style="{StaticResource MainPanelTextBoxStyle}"/>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                    <Label Content="Id       " Style="{StaticResource MainPanelLabelStyle}"/>
+                    <TextBox Name="IdTextBox" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                </StackPanel>
+                <StackPanel
+                    Margin="5">
                     <Button
                     Name="OkButton"                  
                     Style="{StaticResource MainPanelButtonStyle}" 
-                    Content="Begin Game"
+                    Content="Begin New Game"
                     HorizontalAlignment="Center"
                     Margin="10"
-                    Click="OkButton_Click"/>
+                    Click="OkButton_Click" Width="105"/>
+                     <Button
+                    Name="LoginButton"                  
+                    Style="{StaticResource MainPanelButtonStyle}" 
+                    Content="Login Saved Player"
+                    HorizontalAlignment="Center"
+                    Margin="10" Width="105" Click="LoginButton_Click"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock 

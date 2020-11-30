@@ -557,7 +557,7 @@
                             <StackPanel
                             Orientation="Horizontal"
                             Margin="10">
-                                <Button 
+                               <Button 
                                 Content="Save Game" 
                                 Style="{StaticResource MainPanelButtonStyle}" 
                                 Click="SaveButton_Click"/>

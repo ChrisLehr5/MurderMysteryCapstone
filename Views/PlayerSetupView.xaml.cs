@@ -5,6 +5,8 @@ using System.Linq;
 using System.Windows;
 using MurderMysteryCapstone.Models;
 using MurderMysteryCapstone.DataAcessLayer;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace MurderMysteryCapstone.Views
 {
@@ -13,8 +15,8 @@ namespace MurderMysteryCapstone.Views
     /// </summary>
     public partial class PlayerSetupView : Window
     {
-        private Player _player;
-
+        private Player _player;      
+       
 
         public PlayerSetupView(Player player)
         {
@@ -100,6 +102,30 @@ namespace MurderMysteryCapstone.Views
             AgeTextBox.Text = "";
             //JobTitleComboBox.SelectedIndex = 0;
             //TraitComboBox.SelectedIndex = 0;
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+            SqlConnection sc = new SqlConnection();
+            SqlCommand com = new SqlCommand();
+            sc.ConnectionString = ("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = PlayerDB; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False");
+            sc.Open();
+            com.Connection = sc;
+
+            com.CommandText = @"INSERT INTO PlayerInfo (Id, Name, Age) VALUES (@Id, @Name, @Age)";
+            com.Parameters.Add(new SqlParameter("Name", NameTextBox.Text));
+            com.Parameters.Add(new SqlParameter("Age", AgeTextBox.Text));
+            com.Parameters.Add(new SqlParameter("Id", IdTextBox.Text));
+
+            com.ExecuteNonQuery();
+            sc.Close();
+        }
+
+        private void btnClose_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -73,6 +73,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataAcessLayer\SeedData.cs" />
     <Compile Include="Models\GameItemQuantity.cs" />
     <Compile Include="Models\GameMapLocations.cs" />
     <Compile Include="Models\IPerception.cs" />
