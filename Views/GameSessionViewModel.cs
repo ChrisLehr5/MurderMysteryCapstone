@@ -6,6 +6,8 @@ using System.Windows;
 using MurderMysteryCapstone.UtilityClass;
 using System.Text;
 using MurderMysteryCapstone.Views;
+using System.Collections.ObjectModel;
+using MurderMysteryCapstone.BusinessLayer;
 
 namespace MurderMysteryCapstone.Views
 {
@@ -19,22 +21,47 @@ namespace MurderMysteryCapstone.Views
 
         #endregion
 
+        //private ObservableCollection<Player> _player;
         private Player _player;
-
+        private Player _selectedPlayer;
+        private string _searchText;
+        private PlayerBusiness _playerBusiness;
         private Map _gameMap;
         private Location _currentLocation;
         private Location _northLocation, _eastLocation, _southLocation, _westLocation;
         private string _currentLocationInformation;
         private GameItemQuantity _currentGameItem;
         private Npc _currentNpc;
-
         private Random random = new Random();
-             
+
+        public Player SelectedPlayer
+        {
+            get { return _selectedPlayer; }
+            set
+            {
+                _selectedPlayer = value;
+                OnPropertyChanged(nameof(SelectedPlayer));
+               
+            }
+        }
 
         public Player Player
         {
             get { return _player; }
-            set { _player = value; }
+            set 
+            {   _player = value;
+                OnPropertyChanged(nameof(Player));
+            }
+        }
+
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+            }
         }
 
         public string MessageDisplay
@@ -697,5 +724,7 @@ namespace MurderMysteryCapstone.Views
                 _player.UpdateJournalStatus();
             }
         }
+
+        
     }
 }

@@ -18,9 +18,7 @@ namespace MurderMysteryCapstone.Views
     /// <summary>
     /// Interaction logic for HelpWindow.xaml
     /// </summary>
-    public partial class HelpWindow : Window
-    {
-        string dbConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PlayerDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+    public partial class HelpWindow : Window    {
         
         public HelpWindow()
         {

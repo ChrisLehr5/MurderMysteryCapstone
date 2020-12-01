@@ -111,10 +111,11 @@
                 Margin="10"
                 Orientation="Horizontal"
                 HorizontalAlignment="Center">
-                    <Label Content="Play Style" Style="{StaticResource MainPanelLabelStyle}"/>
+                    <Label Content="Load Player" Style="{StaticResource MainPanelLabelStyle}"/>
                     <ComboBox 
-                    Name="JobTitleComboBox"
-                    SelectedIndex="0"
+                    Name="PlayerLoadBox"
+                    ItemsSource="{Binding Player}"
+                    SelectedItem="{Binding Player}"  
                     Style="{StaticResource MainPanelComboBoxStyle}"/>
                 </StackPanel>
                 <StackPanel
@@ -147,7 +148,7 @@
                      <Button
                     Name="LoginButton"                  
                     Style="{StaticResource MainPanelButtonStyle}" 
-                    Content="Login Saved Player"
+                    Content="Save Player"
                     HorizontalAlignment="Center"
                     Margin="10" Width="105" Click="LoginButton_Click"/>
                 </StackPanel>
@@ -191,6 +192,25 @@
                     Style="{StaticResource MainPanelButtonStyle}" 
                     HorizontalAlignment="Center"    
                     Click="ClearButton_Click"/>
+                </StackPanel>
+                <StackPanel
+                                Grid.Column="0">
+                    <Label 
+                                    Margin="0,0,0,10"
+                                    Content="Search by Name: "
+                                    Foreground="Gold"/>
+                    <TextBox 
+                                    VerticalContentAlignment="Center"
+                                    Grid.Column="1"
+                                    Width="90"
+                                    Height="20"
+                                    SpellCheck.IsEnabled="True"
+                                    Text="{Binding SearchText}"/>
+                    <Button
+                                    Margin="0,5,0,0"
+                                    Content="Search"                                 
+                                    Command="{Binding SearchByNameCommand }"
+                                    Height="20"/>
                 </StackPanel>
             </StackPanel>           
         </Border>

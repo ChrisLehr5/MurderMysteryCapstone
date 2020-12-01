@@ -14,7 +14,7 @@ namespace MurderMysteryCapstone.Models
 
         protected override string InformationText()
         {
-            return $"{Name} - {Description}";
+            return $"{Name}  {Description}";
         }
 
         public NpcCharacter()
