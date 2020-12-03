@@ -15,14 +15,13 @@ namespace MurderMysteryCapstone.Views
     /// </summary>
     public partial class PlayerSetupView : Window
     {
-        private Player _player;      
-       
-
+        private Player _player;        
+             
         public PlayerSetupView(Player player)
         {
-            _player = player;
+            _player = player;            
 
-            InitializeComponent();
+           InitializeComponent();
 
             SetupWindow();
         }
@@ -110,7 +109,7 @@ namespace MurderMysteryCapstone.Views
 
             SqlConnection sc = new SqlConnection();
             SqlCommand com = new SqlCommand();
-            sc.ConnectionString = ("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = PlayerDB; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False");
+            sc.ConnectionString = ("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename =| DataDirectory |\\DataAcessLayer\\Sql\\Player.mdf; Integrated Security = True");
             sc.Open();
             com.Connection = sc;
 
@@ -127,5 +126,6 @@ namespace MurderMysteryCapstone.Views
         {
             this.Close();
         }
+            
     }
 }

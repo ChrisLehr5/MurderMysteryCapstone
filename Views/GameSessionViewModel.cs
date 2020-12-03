@@ -8,6 +8,8 @@ using System.Text;
 using MurderMysteryCapstone.Views;
 using System.Collections.ObjectModel;
 using MurderMysteryCapstone.BusinessLayer;
+using System.Windows.Controls;
+using System.Data.SqlClient;
 
 namespace MurderMysteryCapstone.Views
 {
@@ -21,7 +23,6 @@ namespace MurderMysteryCapstone.Views
 
         #endregion
 
-        //private ObservableCollection<Player> _player;
         private Player _player;
         private Player _selectedPlayer;
         private string _searchText;
@@ -33,6 +34,7 @@ namespace MurderMysteryCapstone.Views
         private GameItemQuantity _currentGameItem;
         private Npc _currentNpc;
         private Random random = new Random();
+        private string _errorMessage;
 
         public Player SelectedPlayer
         {
@@ -43,13 +45,14 @@ namespace MurderMysteryCapstone.Views
                 OnPropertyChanged(nameof(SelectedPlayer));
                
             }
-        }
+        }       
 
         public Player Player
         {
             get { return _player; }
-            set 
-            {   _player = value;
+            set
+            {
+                _player = value;
                 OnPropertyChanged(nameof(Player));
             }
         }
@@ -61,6 +64,17 @@ namespace MurderMysteryCapstone.Views
             {
                 _searchText = value;
                 OnPropertyChanged(nameof(SearchText));
+            }
+        }
+
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
             }
         }
 
@@ -197,11 +211,10 @@ namespace MurderMysteryCapstone.Views
 
         public GameSessionViewModel(
             Player player,
-            Map gameMap,
+            Map gameMap,          
             GameMapCoordinates currentLocationCoordinates)
         {
-            _player = player;
-
+            _player = player;           
             _gameMap = gameMap;
             _gameMap.CurrentLocationCoordinates = currentLocationCoordinates;
             _currentLocation = _gameMap.CurrentLocation;
@@ -333,7 +346,7 @@ namespace MurderMysteryCapstone.Views
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
-                _player.UpdateJournalStatus();
+                //_player.UpdateJournalStatus();
             }
         }
 
@@ -348,7 +361,7 @@ namespace MurderMysteryCapstone.Views
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
-                _player.UpdateJournalStatus();
+               // _player.UpdateJournalStatus();
             }
         }
 
@@ -363,7 +376,7 @@ namespace MurderMysteryCapstone.Views
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
-                _player.UpdateJournalStatus();
+               // _player.UpdateJournalStatus();
             }
         }
 
@@ -378,7 +391,7 @@ namespace MurderMysteryCapstone.Views
                 CurrentLocation = _gameMap.CurrentLocation;
                 UpdateAvailableTravelPoints();
                 OnPlayerMove();
-                _player.UpdateJournalStatus();
+               // _player.UpdateJournalStatus();
 
             }
         }
@@ -724,7 +737,6 @@ namespace MurderMysteryCapstone.Views
                 _player.UpdateJournalStatus();
             }
         }
-
         
     }
 }

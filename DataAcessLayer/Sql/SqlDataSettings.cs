@@ -8,7 +8,7 @@ namespace MurderMysteryCapstone.DataAcessLayer.Sql
 {
     class SqlDataSettings
     {
-        public static string ConnectionString = @"Data Source=(localDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\khyr\source\repos\MurderMysteryCapstone\DATAACCESSLAYER\SQL\PLAYER.MDF""; ;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DataAcessLayer\Sql\Player.mdf;Integrated Security=True";
 
     }
 }

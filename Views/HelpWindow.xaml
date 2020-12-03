@@ -6,19 +6,23 @@
         xmlns:local="clr-namespace:MurderMysteryCapstone.Views"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="MurderMysteryCapstone.Views.HelpWindow"
         mc:Ignorable="d"
-        Title="HelpWindow" Height="450" Width="800">    
-    <Grid>        
-        <Grid>            
-            <StackPanel>
-                <Button 
-                      Content="Save Game"                        
-                      Click="SaveButton_Click"/>
-                <TextBlock Margin="5" Text="Welcome!"/>
-                <TextBlock Margin="5" Text="This is a puzzle based game that takes place inside your families mansion." />
-                <TextBlock Margin="5" Text="You will use the items inside to decipher what strange circumstances have occured while you have been away at school."/>
-                <TextBlock Margin="5" Text="Solve the mystery!"/>
-                <TextBox Name="Name" Height="23" TextWrapping="Wrap"/>
-            </StackPanel>            
+        Background="Black"
+        Title="Story Background Recap" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <Image  
+                Height="400"
+                Width="400"
+                Stretch="Fill"                
+                Source="/Images/newspaper.png" Margin="140,10,252,10"                
+                />
+            <Image  
+                Height="400"
+                Width="400"
+                Stretch="Fill"                
+                Source="/Images/blood.png"                
+                Margin="236,20,156,0"                
+                />
         </Grid>
     </Grid>
 </Window>

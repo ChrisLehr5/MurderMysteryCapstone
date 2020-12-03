@@ -16,9 +16,9 @@ namespace MurderMysteryCapstone.Models
 
         #region FIELDS
 
-        protected int _id;
-        protected string _name;
-        protected int _level;
+        private int _id;
+        private string _name;
+        private int _level;
         
 
         #endregion

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MurderMysteryCapstone.Views"
         mc:Ignorable="d"
-       Background="Gray"
+       Background="#5E60CE"
         Width="1500"
         Height="600"
         WindowStartupLocation="CenterScreen"
@@ -23,7 +23,7 @@
             <GradientStop Color="MidnightBlue" Offset="1" />
         </LinearGradientBrush>
         <Style x:Key="BorderStyle" TargetType="Border">
-            <Setter Property="BorderBrush" Value="PowderBlue"/>
+            <Setter Property="BorderBrush" Value="#0F4C5C"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
         </Style>
@@ -35,7 +35,7 @@
             <Setter Property="Margin" Value="10,0,10,0"/>
             <Setter Property="Width" Value="75"/>
             <Setter Property="Height" Value="20"/>
-            <Setter Property="Background" Value="Silver"/>
+            <Setter Property="Background" Value="#80FFDB"/>
             <Setter Property="Foreground" Value="MidnightBlue"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -124,13 +124,13 @@
                             <Button 
                             Margin="10"
                             Width="150"
-                            Content="Journal" 
-                            Style="{StaticResource MainPanelButtonStyle}" 
-                            Click="JournalStatus_Click"/>
+                              Content="Story Background" 
+                              Style="{StaticResource MainPanelButtonStyle}" 
+                              Click="HelpButton_Click"/>                         
                         </StackPanel>
                         <Label 
-                            Content="Current Location" 
-                            HorizontalAlignment="Center"
+                            Content="Player Current Location" 
+                            HorizontalAlignment="Left"
                             Style="{StaticResource MainPanelLabelStyle}"/>
                         <TextBox
                             Width="175"
@@ -211,22 +211,22 @@
                             Orientation="Vertical"
                             Height="30"  >
                             <Label 
-                                Content="Character Information"
+                                Content="Player Information"
                                 VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Left"
                                 Style="{StaticResource MainPanelLabelStyle}"/>
                         </StackPanel>
                         <StackPanel
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Left">
                             <TextBox Text="{Binding Player.Name}" IsReadOnly="True" Name="textBox1" Style="{StaticResource MainPanelTextBoxStyle}"/>
-                            <Label Content="Name" Style="{StaticResource MainPanelLabelStyle}"/>
+                            <Label Content="Player Name" Style="{StaticResource MainPanelLabelStyle}"/>
                         </StackPanel>
                         <StackPanel
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Left">
-                            <TextBox Text="{Binding Player.Trait}" IsReadOnly="True" Name="textBox2" Style="{StaticResource MainPanelTextBoxStyle}"/>
-                            <Label Content="Trait" Style="{StaticResource MainPanelLabelStyle}"/>
+                            <TextBox Text="{Binding Player.Age}" IsReadOnly="True" Name="textBox2" Style="{StaticResource MainPanelTextBoxStyle}"/>
+                            <Label Content="Player Age" Style="{StaticResource MainPanelLabelStyle}"/>
                         </StackPanel>                       
                         <StackPanel
                             Orientation="Vertical"
@@ -382,32 +382,9 @@
                                                 Width="Auto"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
-                            </TabItem>
+                            </TabItem>                            
 
-                            <TabItem Header="Weapons"
-                                x:Name="WeaponsTabItem">
-                                <DataGrid 
-                                    x:Name="WeaponsDataGrid"
-                                    ItemsSource="{Binding Player.Weapons}"
-                                    SelectedItem="{Binding CurrentGameItem}"
-                                    AutoGenerateColumns="False"
-                                    HeadersVisibility="Column">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name"
-                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
-                                                Width="*"/>
-                                        <DataGridTextColumn Header="Qty"
-                                                IsReadOnly="True"
-                                                Width="Auto"
-                                                Binding="{Binding Quantity, Mode=OneWay}"/>
-                                        <DataGridTextColumn Header="Value"
-                                                Binding="{Binding GameItem.Value, Mode=OneWay}"
-                                                Width="Auto"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </TabItem>
-
-                            <TabItem Header="Treasure"
+                            <TabItem Header="Items"
                                 x:Name="TreasureTabItem">
                                 <DataGrid 
                                     x:Name="TreasureDataGrid"
@@ -465,7 +442,7 @@
                             Height="50"  />
                         <StackPanel
                            Orientation="Horizontal"
-                           Margin="10">
+                           Margin="20">
                             <Button 
                                 Content="Pick Up" 
                                 Style="{StaticResource MainPanelButtonStyle}" 
@@ -474,18 +451,19 @@
                                 Content="Put Down" 
                                 Style="{StaticResource MainPanelButtonStyle}" 
                                 Click="PutDownButton_Click"/>
-                        </StackPanel>
-                        <StackPanel
-                            Orientation="Horizontal"
-                            Margin="10">
-                            <Button 
-                                Content="Use" 
-                                Style="{StaticResource MainPanelButtonStyle}" 
-                                Click="UseButton_Click"/>
                             <Button 
                                 Content="Inspect Item" 
                                 Style="{StaticResource MainPanelButtonStyle}" 
                                 Click="InspectButton_Click"/>
+                        </StackPanel>
+                        <StackPanel
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="10">
+                            <Button                                 
+                                Content="Use" 
+                                Style="{StaticResource MainPanelButtonStyle}" 
+                                Click="UseButton_Click"/>                            
                         </StackPanel>
                         <StackPanel>
                             
@@ -511,7 +489,7 @@
                                 Height="100"
                                 Width="auto"
                                 Margin="10"
-                                Background="LightGray"
+                                Background="#FB8B24"
                                 BorderThickness="0"
                                 TextWrapping="Wrap"
                                 Text="{Binding PerceptionDisplay, Mode=OneWay}"
@@ -569,10 +547,8 @@
                             <StackPanel
                             Orientation="Vertical"
                             Height="50"  >
-                                <Button 
-                                Content="About Game" 
-                                Style="{StaticResource MainPanelButtonStyle}" 
-                                Click="HelpButton_Click"/>
+                                
+                              
                             </StackPanel>
                         </StackPanel>
                     </Grid>
