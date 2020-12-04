@@ -67,8 +67,7 @@ namespace MurderMysteryCapstone.BusinessLayer
             try
             {
                 _dataService.Add(player);
-                //_pokemon.Add(pokemon);
-                //_dataService.WriteAll(_pokemon);
+          
             }
             catch (Exception e)
             {
@@ -85,9 +84,7 @@ namespace MurderMysteryCapstone.BusinessLayer
             try
             {
                 _dataService.Delete(id);
-                //_pokemon.Remove(_pokemon.FirstOrDefault(p => p.ID == id));
-
-                //_dataService.WriteAll(_pokemon);
+             
             }
             catch (Exception e)
             {
@@ -104,10 +101,7 @@ namespace MurderMysteryCapstone.BusinessLayer
             try
             {
                 _dataService.Update(player);
-
-                //_pokemon.Remove(_pokemon.FirstOrDefault(p => p.ID == pokemon.ID));
-                //_pokemon.Add(pokemon);
-                //_dataService.WriteAll(_pokemon);
+                                
             }
             catch (Exception e)
             {

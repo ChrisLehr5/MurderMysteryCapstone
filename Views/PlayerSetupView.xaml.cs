@@ -98,9 +98,7 @@ namespace MurderMysteryCapstone.Views
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             NameTextBox.Text = "";
-            AgeTextBox.Text = "";
-            //JobTitleComboBox.SelectedIndex = 0;
-            //TraitComboBox.SelectedIndex = 0;
+            AgeTextBox.Text = "";            
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -109,7 +107,7 @@ namespace MurderMysteryCapstone.Views
 
             SqlConnection sc = new SqlConnection();
             SqlCommand com = new SqlCommand();
-            sc.ConnectionString = ("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename =| DataDirectory |\\DataAcessLayer\\Sql\\Player.mdf; Integrated Security = True");
+            sc.ConnectionString = ("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = PlayerDB; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False");
             sc.Open();
             com.Connection = sc;
 
@@ -120,12 +118,9 @@ namespace MurderMysteryCapstone.Views
 
             com.ExecuteNonQuery();
             sc.Close();
-        }
 
-        private void btnClose_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+            MessageBox.Show("Save successful, please begin new game!");
+        }       
             
     }
 }

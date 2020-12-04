@@ -115,7 +115,7 @@
                                     Width="90"
                                     Height="20"
                                     SpellCheck.IsEnabled="True"
-                                    Text="{Binding SearchText}"/>
+                                    Text="{Binding Player.Name}"/>
                     <Button
                                     Margin="15,0,0,0"
                                     Content="Search"                                   

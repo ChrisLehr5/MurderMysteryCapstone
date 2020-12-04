@@ -95,9 +95,7 @@ namespace MurderMysteryCapstone.BusinessLayer
         /// </summary>
         public List<Player> AllPlayer()
         {
-            //return GetAllPlayer() as List<Player>;
-
-            //return SeedData.GetAllPokemon();
+            //return GetAllPlayer() as List<Player>;           
 
             return GetAllPlayer();
         }

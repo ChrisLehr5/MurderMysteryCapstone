@@ -16,6 +16,7 @@ namespace MurderMysteryCapstone
     /// </summary>
     public partial class App : Application
     {
+       
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             GameBusiness gameBusiness = new GameBusiness();
@@ -34,8 +35,9 @@ namespace MurderMysteryCapstone
                 if (r.StagingItem.Input is MouseButtonEventArgs || r.StagingItem.Input is KeyEventArgs)
                     timer.Interval = TimeSpan.FromSeconds(10);
             };
-
+            
         }
+
 
     }
 }    
