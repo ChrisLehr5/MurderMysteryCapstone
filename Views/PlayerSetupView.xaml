@@ -99,7 +99,7 @@
             Orientation="Vertical"
             HorizontalAlignment="Left">
                 <Label
-                    Content="Character Creation" 
+                    Content="Player Creation" 
                     HorizontalAlignment="Center"
                     Margin="20"
                     FontSize="20"
@@ -142,7 +142,7 @@
                     <TextBox x:Name="IdTextBox" Style="{StaticResource MainPanelTextBoxStyle}"/>
                 </StackPanel>
                 <StackPanel
-                    Margin="5">
+                    Margin="5" Width="362">
                     <Button
                     x:Name="OkButton"                  
                     Style="{StaticResource MainPanelButtonStyle}" 
@@ -156,14 +156,20 @@
                     Content="Save Player"
                     HorizontalAlignment="Center"
                     Margin="10" Width="105" Click="LoginButton_Click"/>
+                    <Button
+                    x:Name="ClearButton"                    
+                    Content="Reset"
+                    Margin="10"
+                    Style="{StaticResource MainPanelButtonStyle}" 
+                    HorizontalAlignment="Center"    
+                    Click="ClearButton_Click"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock 
                     x:Name="ErrorMessageTextBlock"
                     Background="Gray"
                     Foreground="Red"/>
-                </StackPanel>
-                <syncfusion:ComboBoxAdv Height="25" Width="120"/>
+                </StackPanel>             
             </StackPanel>
         </Border>
 
@@ -188,14 +194,7 @@
                     BorderThickness="0"
                     TextWrapping="Wrap"
                     Text="This adventure game is a game of choices, following your character as you attempt to solve the deadly mystery surrounding the discovered gold. Will you progress, or be the next victim to fall?"/>
-                <StackPanel>
-                    <Button
-                    x:Name="ClearButton"                    
-                    Content="Reset"
-                    Margin="10"
-                    Style="{StaticResource MainPanelButtonStyle}" 
-                    HorizontalAlignment="Center"    
-                    Click="ClearButton_Click"/>
+                <StackPanel>                  
                 </StackPanel>            
             </StackPanel>
         </Border>

@@ -405,30 +405,7 @@
                                                 Width="Auto"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
-                            </TabItem>
-
-                            <TabItem Header="Potions"
-                                x:Name="PotionsTabItem">
-                                <DataGrid 
-                                    x:Name="PotionsDataGrid"
-                                    ItemsSource="{Binding Player.Potions}"
-                                    SelectedItem="{Binding CurrentGameItem}"
-                                    AutoGenerateColumns="False"
-                                    HeadersVisibility="Column">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name"
-                                                Binding="{Binding GameItem.Name, Mode=OneWay}"
-                                                Width="*"/>
-                                        <DataGridTextColumn Header="Qty"
-                                                IsReadOnly="True"
-                                                Width="Auto"
-                                                Binding="{Binding Quantity, Mode=OneWay}"/>
-                                        <DataGridTextColumn Header="Value"
-                                                Binding="{Binding GameItem.Value, Mode=OneWay}"
-                                                Width="Auto"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </TabItem>
+                            </TabItem>                          
 
                         </TabControl>
                         <StackPanel
@@ -466,7 +443,7 @@
                                 Click="UseButton_Click"/>                            
                         </StackPanel>
                         <StackPanel>
-                            
+                            <!--Placeholder-->
                         </StackPanel>
 
                     </StackPanel>
@@ -534,22 +511,19 @@
                             Height="35"  ></StackPanel>
                             <StackPanel
                             Orientation="Horizontal"
-                            Margin="10">
-                               <Button 
-                                Content="Save Game" 
-                                Style="{StaticResource MainPanelButtonStyle}" 
-                                Click="SaveButton_Click"/>
+                            Margin="10">                              
                                 <Button 
+                                HorizontalAlignment="Center"
                                 Content="Quit Game" 
                                 Style="{StaticResource MainPanelButtonStyle}" 
+                                Width="105"                                
                                 Click="QuitButton_Click"/>
-                            </StackPanel>
-                            <StackPanel
-                            Orientation="Vertical"
-                            Height="50"  >
-                                
-                              
-                            </StackPanel>
+                                <Button 
+                                HorizontalAlignment="Center"
+                                Content="Save" 
+                                Style="{StaticResource MainPanelButtonStyle}" 
+                                Width="105" Click="Button_Click" />
+                            </StackPanel>                            
                         </StackPanel>
                     </Grid>
                 </Border>

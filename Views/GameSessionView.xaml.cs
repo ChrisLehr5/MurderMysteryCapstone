@@ -125,9 +125,9 @@ namespace MurderMysteryCapstone.Views
             }
         }
 
-        private void JournalStatus_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _gameSessionViewModel.OpenJournalStatusView();
+           
         }
     }
 }

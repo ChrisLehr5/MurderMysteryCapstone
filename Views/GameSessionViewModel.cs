@@ -36,6 +36,9 @@ namespace MurderMysteryCapstone.Views
         private Random random = new Random();
         private string _errorMessage;
 
+
+        public Player UserPlayer { get; set; }
+
         public Player SelectedPlayer
         {
             get { return _selectedPlayer; }
@@ -45,7 +48,8 @@ namespace MurderMysteryCapstone.Views
                 OnPropertyChanged(nameof(SelectedPlayer));
                
             }
-        }       
+        }
+              
 
         public Player Player
         {
@@ -206,7 +210,7 @@ namespace MurderMysteryCapstone.Views
 
         public GameSessionViewModel()
         {
-
+           
         }
 
         public GameSessionViewModel(
@@ -613,8 +617,9 @@ namespace MurderMysteryCapstone.Views
         public void QuiteApplication()
         {
             Environment.Exit(0);
-        }
-
+        }     
+        
+        
         /// <summary>
         /// player chooses to reset game
         /// </summary>
